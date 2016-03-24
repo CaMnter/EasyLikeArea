@@ -37,6 +37,8 @@ public class EasyLikeArea extends ViewGroup {
 
     private List<View> likeViews = new ArrayList<>();
 
+    private static final boolean DEFAULT_OMIT_CENTER = true;
+
     /**************
      * Default dp *
      **************/
@@ -52,6 +54,9 @@ public class EasyLikeArea extends ViewGroup {
     private View omitView;
     private int omitViewWidth;
     private int omitViewHeight;
+    private boolean omitCenter;
+
+    private int fullLikeCount = -1;
 
     private DisplayMetrics mMetrics;
 
@@ -82,16 +87,23 @@ public class EasyLikeArea extends ViewGroup {
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.EasyLikeArea);
         this.likeSpacing = a.getDimensionPixelOffset(R.styleable.EasyLikeArea_easyLikeAreaLikeSpacing, this.dp2px(DEFAULT_LIKE_SPACING));
         this.omitSpacing = a.getDimensionPixelOffset(R.styleable.EasyLikeArea_easyLikeAreaOmitSpacing, this.dp2px(DEFAULT_OMIT_SPACING));
+        this.omitCenter = a.getBoolean(R.styleable.EasyLikeArea_easyLikeAreaOmitCenter, DEFAULT_OMIT_CENTER);
         a.recycle();
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+
         int viewWidth = MeasureSpec.getSize(widthMeasureSpec);
         int viewHeight = MeasureSpec.getSize(heightMeasureSpec);
         int widthMode = MeasureSpec.getMode(widthMeasureSpec);
         int heightMode = MeasureSpec.getMode(heightMeasureSpec);
+
+        int paddingTop = this.getPaddingTop();
+        int paddingBottom = this.getPaddingBottom();
+        int paddingLeft = this.getPaddingLeft();
+        int paddingRight = this.getPaddingRight();
 
         int likesWidth = 0;
 
@@ -120,18 +132,17 @@ public class EasyLikeArea extends ViewGroup {
             likesWidth += this.likeSpacing;
             if (likesWidth + likeWidth > viewWidth - this.omitViewWidth) {
                 resultWidth = likesWidth;
-                resultHeight = Math.max(likeHeight, this.omitViewHeight);
                 break;
             } else {
                 likesWidth += likeWidth;
                 resultWidth = Math.max(resultWidth, likesWidth);
-                resultHeight = Math.max(resultHeight, Math.max(likeHeight, this.omitViewHeight));
             }
+            resultHeight = Math.max(resultHeight, Math.max(likeHeight, this.omitViewHeight));
         }
-
         resultWidth += this.omitViewWidth;
-        resultHeight += this.omitViewHeight;
 
+        resultWidth += paddingLeft + paddingRight;
+        resultHeight += paddingTop + paddingBottom;
         this.setMeasuredDimension((widthMode == MeasureSpec.EXACTLY) ? viewWidth : resultWidth,
                 (heightMode == MeasureSpec.EXACTLY) ? viewHeight : resultHeight);
     }
@@ -149,8 +160,12 @@ public class EasyLikeArea extends ViewGroup {
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         this.likeViews.clear();
 
+        int paddingTop = this.getPaddingTop();
+        int paddingLeft = this.getPaddingLeft();
+
         int likesWidth = 0;
         int viewWidth = this.getWidth();
+        boolean isFull = false;
 
         int childCount = this.getChildCount();
         for (int i = 0; i < childCount; i++) {
@@ -160,32 +175,49 @@ public class EasyLikeArea extends ViewGroup {
             // Add likeSpacing
             likesWidth += this.likeSpacing;
             if (likesWidth + likeWidth > viewWidth - this.omitViewWidth) {
+                isFull = true;
                 break;
             } else {
                 likesWidth += likeWidth;
                 this.likeViews.add(like);
             }
         }
-        int left = 0;
-        int top = 0;
-        for (int i = 0; i < this.likeViews.size(); i++) {
-            View like = this.likeViews.get(i);
-            int likeLeft = left;
-            int likeTop = top;
-            int likeRight = likeLeft + like.getMeasuredWidth();
-            int likeBottom = likeTop + like.getMeasuredHeight();
-            like.layout(likeLeft, likeTop, likeRight, likeBottom);
-            left += like.getMeasuredWidth();
-            left += this.likeSpacing;
+        int left = paddingLeft;
+        if (isFull) {
+            this.fullLikeCount = this.likeViews.size();
+            for (int i = 0; i < this.likeViews.size(); i++) {
+                View like = this.likeViews.get(i);
+                int likeLeft = left;
+                int likeRight = likeLeft + like.getMeasuredWidth();
+                int likeBottom = paddingTop + like.getMeasuredHeight();
+                like.layout(likeLeft, paddingTop, likeRight, likeBottom);
+                left += like.getMeasuredWidth();
+                left += this.likeSpacing;
+            }
+            if (this.omitView != null && this.omitView.getVisibility() == VISIBLE) {
+                left += this.omitSpacing;
+                int omitLeft = left;
+                int omitTop = paddingTop;
+                if (this.omitCenter) {
+                    omitTop = this.getHeight() / 2 - this.omitView.getMeasuredHeight() / 2;
+                }
+                int omitRight = omitLeft + this.omitView.getMeasuredWidth();
+                int omitBottom = omitTop + this.omitView.getMeasuredHeight();
+                this.omitView.layout(omitLeft, omitTop, omitRight, omitBottom);
+            }
+        } else {
+            for (int i = 0; i < this.likeViews.size(); i++) {
+                if (i == this.likeViews.size() - 1) break;
+                View like = this.likeViews.get(i);
+                int likeLeft = left;
+                int likeRight = likeLeft + like.getMeasuredWidth();
+                int likeBottom = paddingTop + like.getMeasuredHeight();
+                like.layout(likeLeft, paddingTop, likeRight, likeBottom);
+                left += like.getMeasuredWidth();
+                left += this.likeSpacing;
+            }
         }
-        if (this.omitView != null && this.omitView.getVisibility() == VISIBLE) {
-            left += this.omitSpacing;
-            int omitLeft = left;
-            int omitTop = top;
-            int omitRight = omitLeft + this.omitView.getMeasuredWidth();
-            int omitBottom = omitTop + this.omitView.getMeasuredHeight();
-            this.omitView.layout(omitLeft, omitTop, omitRight, omitBottom);
-        }
+
     }
 
     @Override
@@ -200,19 +232,46 @@ public class EasyLikeArea extends ViewGroup {
 
     @Override
     protected LayoutParams generateDefaultLayoutParams() {
-        return new MarginLayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+        return new MarginLayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
     }
 
     public void setOmitView(View v) {
         if (this.omitView != null)
             this.removeView(this.omitView);
+        this.addView(v, this.getChildCount());
         this.omitView = v;
-        this.addView(this.omitView, this.getChildCount());
         this.invalidate();
     }
 
     public View getOmitView() {
         return this.omitView;
+    }
+
+    @Override
+    public final void addView(View child) {
+        if (this.omitView != null) {
+            if (this.fullLikeCount != -1) {
+//                super.addView(child, this.fullLikeCount - 1);
+                super.addView(child, this.fullLikeCount - 2);
+            } else {
+                super.addView(child, this.getChildCount() - 1);
+            }
+        } else {
+            super.addView(child);
+        }
+    }
+
+    @Override
+    public void addView(View child, int index) {
+        if (this.omitView != null && index > this.getChildCount() - 1) {
+            if (this.fullLikeCount != -1) {
+                super.addView(child, this.fullLikeCount - 1);
+            } else {
+                super.addView(child, this.getChildCount() - 1);
+            }
+        } else {
+            super.addView(child, index);
+        }
     }
 
     /**

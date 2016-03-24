@@ -11,5 +11,6 @@
     <declare-styleable name="EasyLikeArea">
         <attr name="easyLikeAreaLikeSpacing" format="dimension" />
         <attr name="easyLikeAreaOmitSpacing" format="dimension" />
+        <attr name="easyLikeAreaOmitCenter" format="boolean" />
     </declare-styleable>
 </resources>

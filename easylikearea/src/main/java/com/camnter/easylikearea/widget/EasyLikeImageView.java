@@ -59,7 +59,7 @@ public class EasyLikeImageView extends ImageView {
     @ImageType
     private int imageType;
 
-    private static final int DEFAULT_BORDER_RADIUS = 8;
+    private static final int DEFAULT_BORDER_RADIUS = 6;
 
     protected int mRadius;
     protected float mBorderRadius;
@@ -97,7 +97,6 @@ public class EasyLikeImageView extends ImageView {
         this.mBitmapPaint.setAntiAlias(true);
         this.mMetrics = this.getResources().getDisplayMetrics();
 
-        if (attrs == null) return;
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.EasyLikeImageView);
         this.imageType = typedArray.getInt(R.styleable.EasyLikeImageView_easyLikeImageType, CIRCLE) == CIRCLE ? CIRCLE : ROUND;
         this.mBorderRadius = typedArray.getDimension(
