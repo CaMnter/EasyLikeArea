@@ -49,7 +49,7 @@
 
     <com.camnter.easylikearea.EasyLikeArea
         android:id="@+id/ela"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <com.camnter.easylikearea.widget.EasyLikeImageView
