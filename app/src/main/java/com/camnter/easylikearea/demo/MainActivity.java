@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private EasyLikeArea easyLikeArea;
     private DisplayMetrics mMetrics;
     private Button addBt;
+    private Button queryBt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +27,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         this.mMetrics = this.getResources().getDisplayMetrics();
         this.easyLikeArea.setOmitView(LayoutInflater.from(this).inflate(R.layout.view_omit_style_one, null));
         this.addBt = (Button) this.findViewById(R.id.add_bt);
+        this.queryBt = (Button) this.findViewById(R.id.query_bt);
         if (this.addBt != null) this.addBt.setOnClickListener(this);
+        if (this.queryBt != null) this.queryBt.setOnClickListener(this);
     }
 
     /**
@@ -37,13 +40,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.add_bt:
+            case R.id.add_bt: {
                 EasyLikeImageView iv = new EasyLikeImageView(this);
                 iv.setTag("drakeet");
                 iv.setImageResource(R.mipmap.ic_drakeet);
                 iv.setLayoutParams(new ViewGroup.LayoutParams(this.dp2px(36), this.dp2px(36)));
-                this.easyLikeArea.addView(iv,0);
+                this.easyLikeArea.addView(iv, 0);
                 break;
+            }
+            case R.id.query_bt: {
+                EasyLikeImageView iv = new EasyLikeImageView(this);
+                iv.setTag("camnter");
+                iv.setImageResource(R.mipmap.ic_camnter);
+                iv.setLayoutParams(new ViewGroup.LayoutParams(this.dp2px(36), this.dp2px(36)));
+                this.easyLikeArea.addView(iv, 0);
+                break;
+            }
         }
     }
 
