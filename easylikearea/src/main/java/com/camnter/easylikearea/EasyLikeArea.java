@@ -191,12 +191,12 @@ public class EasyLikeArea extends ViewGroup {
                         this.likeViews.add(like);
                     }
                 } else {
-                    if (likesWidth + likeWidth > viewWidth) {
-                        break;
-                    } else {
-                        likesWidth += likeWidth;
-                        this.likeViews.add(like);
-                    }
+//                    if (likesWidth + likeWidth > viewWidth) {
+//                        break;
+//                    } else {
+                    likesWidth += likeWidth;
+                    this.likeViews.add(like);
+//                    }
                 }
             }
         }
@@ -236,7 +236,6 @@ public class EasyLikeArea extends ViewGroup {
                 }
             }
         }
-
     }
 
     @Override
@@ -274,12 +273,16 @@ public class EasyLikeArea extends ViewGroup {
         return this.omitView;
     }
 
+    public List<View> getLikeViews() {
+        return likeViews;
+    }
+
     @Override
     public final void addView(View child) {
         if (this.omitView != null) {
             if (this.fullLikeCount != -1) {
-//                super.addView(child, this.fullLikeCount - 1);
-                super.addView(child, this.fullLikeCount - 2);
+                super.addView(child, this.fullLikeCount - 1);
+//                super.addView(child, this.fullLikeCount - 2);
             } else {
                 super.addView(child, this.getChildCount() - 1);
             }

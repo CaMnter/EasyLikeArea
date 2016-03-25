@@ -1,5 +1,7 @@
 package com.camnter.easylikearea.demo;
 
+import android.annotation.TargetApi;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
@@ -8,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.camnter.easylikearea.EasyLikeArea;
 import com.camnter.easylikearea.widget.EasyLikeImageView;
@@ -16,8 +19,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private EasyLikeArea easyLikeArea;
     private DisplayMetrics mMetrics;
-    private Button addBt;
+    private Button dkBt;
+    private Button caBt;
     private Button queryBt;
+    private Button likesBt;
+
+    private int dkCount = 0;
+    private int caCount = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,10 +34,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         this.easyLikeArea = (EasyLikeArea) this.findViewById(R.id.ela);
         this.mMetrics = this.getResources().getDisplayMetrics();
         this.easyLikeArea.setOmitView(LayoutInflater.from(this).inflate(R.layout.view_omit_style_one, null));
-        this.addBt = (Button) this.findViewById(R.id.add_bt);
+        this.dkBt = (Button) this.findViewById(R.id.dk_bt);
+        this.caBt = (Button) this.findViewById(R.id.ca_bt);
         this.queryBt = (Button) this.findViewById(R.id.query_bt);
-        if (this.addBt != null) this.addBt.setOnClickListener(this);
+        this.likesBt = (Button) this.findViewById(R.id.likes_bt);
+        if (this.dkBt != null) this.dkBt.setOnClickListener(this);
+        if (this.caBt != null) this.caBt.setOnClickListener(this);
         if (this.queryBt != null) this.queryBt.setOnClickListener(this);
+        if (this.likesBt != null) this.likesBt.setOnClickListener(this);
     }
 
     /**
@@ -40,22 +52,51 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.add_bt: {
+            case R.id.dk_bt: {
                 EasyLikeImageView iv = new EasyLikeImageView(this);
-                iv.setTag("drakeet");
+                iv.setTag("drakeet-" + dkCount++);
                 iv.setImageResource(R.mipmap.ic_drakeet);
                 iv.setLayoutParams(new ViewGroup.LayoutParams(this.dp2px(36), this.dp2px(36)));
+                iv.setOnClickListener(new View.OnClickListener() {
+                    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(MainActivity.this, v.getTag() + "\nX = " + v.getX(), Toast.LENGTH_SHORT).show();
+
+                    }
+                });
                 this.easyLikeArea.addView(iv, 0);
                 break;
             }
-            case R.id.query_bt: {
+            case R.id.likes_bt:
+                System.out.println("LikeViews Count : " + this.easyLikeArea.getLikeViews().size());
+                for (int i = 0; i < this.easyLikeArea.getLikeViews().size(); i++) {
+                    View child = this.easyLikeArea.getLikeViews().get(i);
+                    System.out.println(" i: " + i + "\t\t Name: " + child.getClass().getSimpleName() + "\t\t Tag: " + child.getTag());
+                }
+                break;
+            case R.id.ca_bt: {
                 EasyLikeImageView iv = new EasyLikeImageView(this);
-                iv.setTag("camnter");
+                iv.setTag("camnter-" + caCount++);
                 iv.setImageResource(R.mipmap.ic_camnter);
                 iv.setLayoutParams(new ViewGroup.LayoutParams(this.dp2px(36), this.dp2px(36)));
+                iv.setOnClickListener(new View.OnClickListener() {
+                    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(MainActivity.this, v.getTag() + "\nX = " + v.getX(), Toast.LENGTH_SHORT).show();
+                    }
+                });
                 this.easyLikeArea.addView(iv, 0);
                 break;
             }
+            case R.id.query_bt:
+                System.out.println("ChildCount : " + this.easyLikeArea.getChildCount());
+                for (int i = 0; i < this.easyLikeArea.getChildCount(); i++) {
+                    View child = this.easyLikeArea.getChildAt(i);
+                    System.out.println(" i: " + i + "\t\t Name: " + child.getClass().getSimpleName() + "\t\t Tag: " + child.getTag());
+                }
+                break;
         }
     }
 
