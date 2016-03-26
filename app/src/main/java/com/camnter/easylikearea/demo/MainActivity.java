@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         Toast.makeText(MainActivity.this, v.getTag() + "\nX = " + v.getX(), Toast.LENGTH_SHORT).show();
                     }
                 });
-                this.easyLikeArea.addView(iv, 5);
+                this.easyLikeArea.addView(iv, 0);
                 break;
             }
             case R.id.query_bt:
