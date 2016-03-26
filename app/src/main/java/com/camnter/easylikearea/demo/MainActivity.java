@@ -21,12 +21,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private DisplayMetrics mMetrics;
     private Button dkBt;
     private Button caBt;
+    private Button caRemoveBt;
     private Button queryBt;
     private Button likesBt;
     private Button cacheBt;
 
     private int dkCount = 0;
     private int caCount = 0;
+
+    private EasyLikeImageView lastIv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,11 +43,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         this.queryBt = (Button) this.findViewById(R.id.query_bt);
         this.likesBt = (Button) this.findViewById(R.id.likes_bt);
         this.cacheBt = (Button) this.findViewById(R.id.cache_bt);
+        this.caRemoveBt = (Button) this.findViewById(R.id.ca_rm_bt);
         if (this.dkBt != null) this.dkBt.setOnClickListener(this);
         if (this.caBt != null) this.caBt.setOnClickListener(this);
         if (this.queryBt != null) this.queryBt.setOnClickListener(this);
         if (this.likesBt != null) this.likesBt.setOnClickListener(this);
         if (this.cacheBt != null) this.cacheBt.setOnClickListener(this);
+        if (this.caRemoveBt != null) this.caRemoveBt.setOnClickListener(this);
 
     }
 
@@ -86,6 +91,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }
                 });
                 this.easyLikeArea.addView(iv, 0);
+                this.lastIv = iv;
                 break;
             }
             case R.id.query_bt:
@@ -108,6 +114,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     View child = this.easyLikeArea.getViewCache().get(i);
                     System.out.println(" i: " + i + "\t\t Name: " + child.getClass().getSimpleName() + "\t\t Tag: " + child.getTag());
                 }
+                break;
+            case R.id.ca_rm_bt:
+                this.easyLikeArea.removeView(this.lastIv);
                 break;
         }
     }

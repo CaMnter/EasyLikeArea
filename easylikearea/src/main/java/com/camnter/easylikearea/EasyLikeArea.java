@@ -290,13 +290,13 @@ public class EasyLikeArea extends ViewGroup {
 
     @Override
     public void removeView(View view) {
-        super.removeView(view);
+        this.easyProxy.removeViewProxy(view);
     }
 
 
     @Override
     public void removeViewAt(int index) {
-        super.removeViewAt(index);
+        this.easyProxy.removeViewAtProxy(index);
     }
 
     /**
@@ -350,6 +350,7 @@ public class EasyLikeArea extends ViewGroup {
 
 
         private void removeViewAtCache(int index) {
+            if (index > this.mCacheViews.size() - 1) return;
             if (this.mCacheViews.get(index) != null)
                 this.mCacheViews.remove(index);
         }
@@ -418,15 +419,25 @@ public class EasyLikeArea extends ViewGroup {
             if (EasyLikeArea.this.omitView != null) {
                 if (o == null)
                     o = EasyLikeArea.super.getChildAt(index);
-                if (o.hashCode() == EasyLikeArea.this.omitView.hashCode()) return;
+
+                if (EasyLikeArea.this.existOmitView() &&
+                        o.hashCode() == EasyLikeArea.this.omitView.hashCode()) return;
+
                 if (EasyLikeArea.this.fullLikeCount != NO_FULL) {
                     EasyLikeArea.super.removeViewAt(index);
                     // Remove cache
                     this.removeViewAtCache(index);
                     // Refresh cache
                     View cache = this.getViewCache(index);
-                    if (cache != null)
+                    if (cache != null &&
+                            EasyLikeArea.this.existOmitView() &&
+                            cache.hashCode() != EasyLikeArea.this.omitView.hashCode()) {
+                        if (cache.getParent() != null) {
+                            ((ViewGroup) cache.getParent()).removeView(cache);
+                        }
                         EasyLikeArea.super.addView(cache, EasyLikeArea.this.fullLikeCount - 1);
+                    }
+
                 } else {
                     EasyLikeArea.super.removeViewAt(index);
                     // Remove cache
@@ -446,17 +457,29 @@ public class EasyLikeArea extends ViewGroup {
         }
 
         public void removeViewProxy(View view) {
-            if (view.hashCode() == EasyLikeArea.this.omitView.hashCode()) return;
+            if (view == null) return;
+            if (view.getParent() == null) return;
+            if (EasyLikeArea.this.existOmitView() &&
+                    view.hashCode() == EasyLikeArea.this.omitView.hashCode())
+                return;
+
             if (EasyLikeArea.this.fullLikeCount != NO_FULL) {
                 EasyLikeArea.super.removeView(view);
 
                 // Remove cache
                 this.removeViewCache(view);
 
-                // refresh cache
+                // Refresh cache
                 View cache = this.getViewCache(EasyLikeArea.this.fullLikeCount - 1);
-                if (cache != null)
+                if (cache != null &&
+                        EasyLikeArea.this.existOmitView() &&
+                        cache.hashCode() != EasyLikeArea.this.omitView.hashCode()) {
+                    if (cache.getParent() != null) {
+                        ((ViewGroup) cache.getParent()).removeView(cache);
+                    }
                     EasyLikeArea.super.addView(cache, EasyLikeArea.this.fullLikeCount - 1);
+                }
+
             } else {
                 EasyLikeArea.super.removeView(view);
 
@@ -471,14 +494,6 @@ public class EasyLikeArea extends ViewGroup {
             if (this.mCacheViews.get(position) != null)
                 return (V) this.mCacheViews.get(position);
             return null;
-        }
-
-        public List<View> getFullLikeViewCache(int fullLikeCount) {
-            List<View> fullLikeView = new ArrayList<>();
-            for (int i = 0; i < fullLikeCount; i++) {
-                fullLikeView.add(this.mCacheViews.get(i));
-            }
-            return fullLikeView;
         }
 
         public LinkedList<View> getCacheViews() {
