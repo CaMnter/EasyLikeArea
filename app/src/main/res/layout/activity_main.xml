@@ -13,8 +13,7 @@
     <com.camnter.easylikearea.EasyLikeArea
         android:id="@+id/ela"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#ff000000">
+        android:layout_height="wrap_content">
 
     </com.camnter.easylikearea.EasyLikeArea>
 
@@ -40,6 +39,14 @@
         android:layout_above="@id/query_bt"
         android:layout_centerHorizontal="true"
         android:text="LikesView" />
+
+    <Button
+        android:id="@+id/cache_bt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/likes_bt"
+        android:layout_centerHorizontal="true"
+        android:text="Cache" />
 
     <Button
         android:id="@+id/ca_bt"

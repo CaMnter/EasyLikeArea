@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button caBt;
     private Button queryBt;
     private Button likesBt;
+    private Button cacheBt;
 
     private int dkCount = 0;
     private int caCount = 0;
@@ -38,10 +39,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         this.caBt = (Button) this.findViewById(R.id.ca_bt);
         this.queryBt = (Button) this.findViewById(R.id.query_bt);
         this.likesBt = (Button) this.findViewById(R.id.likes_bt);
+        this.cacheBt = (Button) this.findViewById(R.id.cache_bt);
         if (this.dkBt != null) this.dkBt.setOnClickListener(this);
         if (this.caBt != null) this.caBt.setOnClickListener(this);
         if (this.queryBt != null) this.queryBt.setOnClickListener(this);
         if (this.likesBt != null) this.likesBt.setOnClickListener(this);
+        if (this.cacheBt != null) this.cacheBt.setOnClickListener(this);
+
     }
 
     /**
@@ -68,13 +72,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 this.easyLikeArea.addView(iv, 0);
                 break;
             }
-            case R.id.likes_bt:
-                System.out.println("LikeViews Count : " + this.easyLikeArea.getLikeViews().size());
-                for (int i = 0; i < this.easyLikeArea.getLikeViews().size(); i++) {
-                    View child = this.easyLikeArea.getLikeViews().get(i);
-                    System.out.println(" i: " + i + "\t\t Name: " + child.getClass().getSimpleName() + "\t\t Tag: " + child.getTag());
-                }
-                break;
+
             case R.id.ca_bt: {
                 EasyLikeImageView iv = new EasyLikeImageView(this);
                 iv.setTag("camnter-" + caCount++);
@@ -87,13 +85,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         Toast.makeText(MainActivity.this, v.getTag() + "\nX = " + v.getX(), Toast.LENGTH_SHORT).show();
                     }
                 });
-                this.easyLikeArea.addView(iv, 0);
+                this.easyLikeArea.addView(iv, 5);
                 break;
             }
             case R.id.query_bt:
                 System.out.println("ChildCount : " + this.easyLikeArea.getChildCount());
                 for (int i = 0; i < this.easyLikeArea.getChildCount(); i++) {
                     View child = this.easyLikeArea.getChildAt(i);
+                    System.out.println(" i: " + i + "\t\t Name: " + child.getClass().getSimpleName() + "\t\t Tag: " + child.getTag());
+                }
+                break;
+            case R.id.likes_bt:
+                System.out.println("LikeViews Count : " + this.easyLikeArea.getLikeViews().size());
+                for (int i = 0; i < this.easyLikeArea.getLikeViews().size(); i++) {
+                    View child = this.easyLikeArea.getLikeViews().get(i);
+                    System.out.println(" i: " + i + "\t\t Name: " + child.getClass().getSimpleName() + "\t\t Tag: " + child.getTag());
+                }
+                break;
+            case R.id.cache_bt:
+                System.out.println("Cache Count : " + this.easyLikeArea.getViewCache().size());
+                for (int i = 0; i < this.easyLikeArea.getViewCache().size(); i++) {
+                    View child = this.easyLikeArea.getViewCache().get(i);
                     System.out.println(" i: " + i + "\t\t Name: " + child.getClass().getSimpleName() + "\t\t Tag: " + child.getTag());
                 }
                 break;
