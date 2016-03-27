@@ -8,11 +8,12 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.camnter.easylikearea.EasyLikeArea;
 import com.camnter.easylikearea.widget.EasyLikeImageView;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class TopicActivity extends AppCompatActivity implements View.OnClickListener {
 
     private int[] avatars = {
             R.mipmap.ic_harry_chen,
@@ -28,6 +29,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private EasyLikeArea topicEla;
     private EasyLikeImageView addIv;
     private boolean added = false;
+
+    private TextView likeTv;
+
+    private static final int likeAddedColor = 0xff38B8C1;
+    private static final int likeColor = 0xff97A4AF;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,8 +53,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void initListeners() {
-        View likeTv = this.findViewById(R.id.topic_like_tv);
-        if (likeTv != null) likeTv.setOnClickListener(this);
+        this.likeTv = (TextView) this.findViewById(R.id.topic_like_tv);
+        if (this.likeTv != null) this.likeTv.setOnClickListener(this);
         View chatTv = this.findViewById(R.id.topic_chat_tv);
         if (chatTv != null) chatTv.setOnClickListener(this);
         View shareTv = this.findViewById(R.id.topic_share_tv);
@@ -81,9 +87,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (!added) {
                     this.topicEla.addView(this.addIv);
                     this.added = true;
+                    this.likeTv.setTextColor(likeAddedColor);
                 } else {
                     this.topicEla.removeView(this.addIv);
                     this.added = false;
+                    this.likeTv.setTextColor(likeColor);
                 }
                 break;
         }

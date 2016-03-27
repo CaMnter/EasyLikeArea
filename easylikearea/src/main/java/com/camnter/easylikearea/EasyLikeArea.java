@@ -279,6 +279,8 @@ public class EasyLikeArea extends ViewGroup {
 
     @Override
     public final void addView(View child) {
+        if (this.omitView == null)
+            throw new RuntimeException("You must addView(...) after setOmitView(View v)");
         try {
             this.easyProxy.addViewProxy(child, 0);
         } catch (Exception e) {
@@ -289,6 +291,8 @@ public class EasyLikeArea extends ViewGroup {
 
     @Override
     public void addView(View child, int index) {
+        if (this.omitView == null)
+            throw new RuntimeException("You must addView(...) after setOmitView(View v)");
         try {
             this.easyProxy.addViewProxy(child, index);
         } catch (Exception e) {
@@ -407,7 +411,7 @@ public class EasyLikeArea extends ViewGroup {
 
         public void addViewProxy(View child, int index) {
             if (EasyLikeArea.this.omitView != null && index > EasyLikeArea.this.getChildCount() - 1) {
-                if (child.hashCode() == EasyLikeArea.this.omitView.hashCode()) return;
+//                if (child.hashCode() == EasyLikeArea.this.omitView.hashCode()) return;
                 if (EasyLikeArea.this.fullLikeCount != NO_FULL) {
                     EasyLikeArea.super.addView(child, EasyLikeArea.this.fullLikeCount - 1);
                     EasyLikeArea.super.removeViewAt(EasyLikeArea.this.fullLikeCount);
