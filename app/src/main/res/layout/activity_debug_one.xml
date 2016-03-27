@@ -7,13 +7,16 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.camnter.easylikearea.demo.MainActivity">
+    tools:context=".TopicActivity">
 
     <com.camnter.easylikearea.EasyLikeArea
         android:id="@+id/ela"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="12dp">
+        android:paddingBottom="10dp"
+        android:paddingLeft="12.5dp"
+        android:paddingRight="12.5dp"
+        android:paddingTop="10dp">
 
     </com.camnter.easylikearea.EasyLikeArea>
 

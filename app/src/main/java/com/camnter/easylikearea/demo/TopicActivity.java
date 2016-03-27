@@ -17,6 +17,7 @@ public class TopicActivity extends AppCompatActivity implements View.OnClickList
 
     private int[] avatars = {
             R.mipmap.ic_harry_chen,
+            R.mipmap.ic_xingrz,
             R.mipmap.ic_undownding,
             R.mipmap.ic_fython,
             R.mipmap.ic_kaede_akatsuki,
@@ -26,7 +27,7 @@ public class TopicActivity extends AppCompatActivity implements View.OnClickList
     };
     private DisplayMetrics mMetrics;
 
-    private EasyLikeArea topicEla;
+    public EasyLikeArea topicEla;
     private EasyLikeImageView addIv;
     private boolean added = false;
 
@@ -38,7 +39,7 @@ public class TopicActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.setContentView(R.layout.activity_main);
+        this.setContentView(R.layout.activity_topic);
         this.initViews();
         this.initListeners();
         this.initLikeArea();
@@ -47,7 +48,6 @@ public class TopicActivity extends AppCompatActivity implements View.OnClickList
     private void initViews() {
         this.mMetrics = this.getResources().getDisplayMetrics();
         this.topicEla = (EasyLikeArea) this.findViewById(R.id.topic_ela);
-        this.topicEla.setOmitView(LayoutInflater.from(this).inflate(R.layout.view_omit_style_one, null));
         this.addIv = this.createEasyLikeImageView();
         this.addIv.setImageResource(R.mipmap.ic_camnter);
     }
@@ -68,11 +68,16 @@ public class TopicActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void initLikeArea() {
+        this.setOmitView();
         for (int idRes : avatars) {
             EasyLikeImageView iv = this.createEasyLikeImageView();
             iv.setImageResource(idRes);
             this.topicEla.addView(iv);
         }
+    }
+
+    public void setOmitView() {
+        this.topicEla.setOmitView(LayoutInflater.from(this).inflate(R.layout.view_omit_style_one, null));
     }
 
     /**
