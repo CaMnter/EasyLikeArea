@@ -1,54 +1,72 @@
 package com.camnter.easylikearea.demo;
 
-import android.annotation.TargetApi;
-import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.Toast;
 
 import com.camnter.easylikearea.EasyLikeArea;
 import com.camnter.easylikearea.widget.EasyLikeImageView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private EasyLikeArea easyLikeArea;
+    private int[] avatars = {
+            R.mipmap.ic_harry_chen,
+            R.mipmap.ic_undownding,
+            R.mipmap.ic_fython,
+            R.mipmap.ic_kaede_akatsuki,
+            R.mipmap.ic_qixingchen,
+            R.mipmap.ic_peter_cai,
+            R.mipmap.ic_drakeet,
+    };
     private DisplayMetrics mMetrics;
-    private Button dkBt;
-    private Button caBt;
-    private Button caRemoveBt;
-    private Button queryBt;
-    private Button likesBt;
-    private Button cacheBt;
 
-    private int dkCount = 0;
-    private int caCount = 0;
+    private EasyLikeArea topicEla;
+    private EasyLikeImageView addIv;
+    private boolean added = false;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        this.easyLikeArea = (EasyLikeArea) this.findViewById(R.id.ela);
-        this.mMetrics = this.getResources().getDisplayMetrics();
-        this.easyLikeArea.setOmitView(LayoutInflater.from(this).inflate(R.layout.view_omit_style_one, null));
-        this.dkBt = (Button) this.findViewById(R.id.dk_bt);
-        this.caBt = (Button) this.findViewById(R.id.ca_bt);
-        this.queryBt = (Button) this.findViewById(R.id.query_bt);
-        this.likesBt = (Button) this.findViewById(R.id.likes_bt);
-        this.cacheBt = (Button) this.findViewById(R.id.cache_bt);
-        this.caRemoveBt = (Button) this.findViewById(R.id.ca_rm_bt);
-        if (this.dkBt != null) this.dkBt.setOnClickListener(this);
-        if (this.caBt != null) this.caBt.setOnClickListener(this);
-        if (this.queryBt != null) this.queryBt.setOnClickListener(this);
-        if (this.likesBt != null) this.likesBt.setOnClickListener(this);
-        if (this.cacheBt != null) this.cacheBt.setOnClickListener(this);
-        if (this.caRemoveBt != null) this.caRemoveBt.setOnClickListener(this);
+        this.setContentView(R.layout.activity_main);
+        this.initViews();
+        this.initListeners();
+        this.initLikeArea();
+    }
 
+    private void initViews() {
+        this.mMetrics = this.getResources().getDisplayMetrics();
+        this.topicEla = (EasyLikeArea) this.findViewById(R.id.topic_ela);
+        this.topicEla.setOmitView(LayoutInflater.from(this).inflate(R.layout.view_omit_style_one, null));
+        this.addIv = this.createEasyLikeImageView();
+        this.addIv.setImageResource(R.mipmap.ic_camnter);
+    }
+
+    private void initListeners() {
+        View likeTv = this.findViewById(R.id.topic_like_tv);
+        if (likeTv != null) likeTv.setOnClickListener(this);
+        View chatTv = this.findViewById(R.id.topic_chat_tv);
+        if (chatTv != null) chatTv.setOnClickListener(this);
+        View shareTv = this.findViewById(R.id.topic_share_tv);
+        if (shareTv != null) shareTv.setOnClickListener(this);
+    }
+
+    private EasyLikeImageView createEasyLikeImageView() {
+        EasyLikeImageView iv = new EasyLikeImageView(this);
+        iv.setLayoutParams(new ViewGroup.LayoutParams(this.dp2px(36), this.dp2px(36)));
+        return iv;
+    }
+
+    private void initLikeArea() {
+        for (int idRes : avatars) {
+            EasyLikeImageView iv = this.createEasyLikeImageView();
+            iv.setImageResource(idRes);
+            this.topicEla.addView(iv);
+        }
     }
 
     /**
@@ -59,61 +77,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.dk_bt: {
-                EasyLikeImageView iv = new EasyLikeImageView(this);
-                iv.setTag("drakeet-" + dkCount++);
-                iv.setImageResource(R.mipmap.ic_drakeet);
-                iv.setLayoutParams(new ViewGroup.LayoutParams(this.dp2px(36), this.dp2px(36)));
-                iv.setOnClickListener(new View.OnClickListener() {
-                    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-                    @Override
-                    public void onClick(View v) {
-                        Toast.makeText(MainActivity.this, v.getTag() + "\nX = " + v.getX(), Toast.LENGTH_SHORT).show();
-
-                    }
-                });
-                this.easyLikeArea.addView(iv, 0);
-                break;
-            }
-
-            case R.id.ca_bt: {
-                EasyLikeImageView iv = new EasyLikeImageView(this);
-                iv.setTag("camnter-" + caCount++);
-                iv.setImageResource(R.mipmap.ic_camnter);
-                iv.setLayoutParams(new ViewGroup.LayoutParams(this.dp2px(36), this.dp2px(36)));
-                iv.setOnClickListener(new View.OnClickListener() {
-                    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-                    @Override
-                    public void onClick(View v) {
-                        Toast.makeText(MainActivity.this, v.getTag() + "\nX = " + v.getX(), Toast.LENGTH_SHORT).show();
-                    }
-                });
-                this.easyLikeArea.addView(iv, 0);
-                break;
-            }
-            case R.id.query_bt:
-                System.out.println("ChildCount : " + this.easyLikeArea.getChildCount());
-                for (int i = 0; i < this.easyLikeArea.getChildCount(); i++) {
-                    View child = this.easyLikeArea.getChildAt(i);
-                    System.out.println(" i: " + i + "\t\t Name: " + child.getClass().getSimpleName() + "\t\t Tag: " + child.getTag());
+            case R.id.topic_like_tv:
+                if (!added) {
+                    this.topicEla.addView(this.addIv);
+                    this.added = true;
+                } else {
+                    this.topicEla.removeView(this.addIv);
+                    this.added = false;
                 }
-                break;
-            case R.id.likes_bt:
-                System.out.println("LikeViews Count : " + this.easyLikeArea.getLikeViews().size());
-                for (int i = 0; i < this.easyLikeArea.getLikeViews().size(); i++) {
-                    View child = this.easyLikeArea.getLikeViews().get(i);
-                    System.out.println(" i: " + i + "\t\t Name: " + child.getClass().getSimpleName() + "\t\t Tag: " + child.getTag());
-                }
-                break;
-            case R.id.cache_bt:
-                System.out.println("Cache Count : " + this.easyLikeArea.getViewCache().size());
-                for (int i = 0; i < this.easyLikeArea.getViewCache().size(); i++) {
-                    View child = this.easyLikeArea.getViewCache().get(i);
-                    System.out.println(" i: " + i + "\t\t Name: " + child.getClass().getSimpleName() + "\t\t Tag: " + child.getTag());
-                }
-                break;
-            case R.id.ca_rm_bt:
-                this.easyLikeArea.removeViewAt(0);
                 break;
         }
     }

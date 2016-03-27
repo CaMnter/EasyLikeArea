@@ -141,13 +141,13 @@ public class EasyLikeArea extends ViewGroup {
                 int likeWidth = like.getMeasuredWidth();
                 int likeHeight = like.getMeasuredHeight();
 
-                if (likesWidth + this.likeSpacing + likeWidth > this.maxViewWidth - this.omitViewWidth) {
+                if (likesWidth + this.likeSpacing + likeWidth > this.maxViewWidth - this.omitViewWidth - (paddingLeft + paddingRight)) {
                     resultWidth = likesWidth;
                     resultWidth += this.omitViewWidth;
                     this.isFull = true;
                     resultHeight = Math.max(resultHeight, Math.max(likeHeight, this.omitViewHeight));
                     break;
-                } else if (likesWidth + this.likeSpacing + likeWidth + this.likeSpacing + likeWidth > this.maxViewWidth - this.omitViewWidth) {
+                } else if (likesWidth + this.likeSpacing + likeWidth + this.likeSpacing + likeWidth > this.maxViewWidth - this.omitViewWidth - (paddingLeft + paddingRight)) {
                     likesWidth += likeWidth + this.likeSpacing;
                     resultWidth = likesWidth;
                     resultWidth += this.omitViewWidth;
@@ -280,7 +280,7 @@ public class EasyLikeArea extends ViewGroup {
     @Override
     public final void addView(View child) {
         try {
-            this.easyProxy.addViewProxy(child);
+            this.easyProxy.addViewProxy(child, 0);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -373,6 +373,11 @@ public class EasyLikeArea extends ViewGroup {
                 this.mCacheViews.remove(index);
         }
 
+        /**
+         * TODO: beta
+         *
+         * @param child child
+         */
         public void addViewProxy(View child) {
             if (EasyLikeArea.this.omitView != null) {
                 if (child.hashCode() == EasyLikeArea.this.omitView.hashCode()) return;

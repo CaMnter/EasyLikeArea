@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
-        android:text="17人赞过"
+        android:text="1000w+赞"
         android:textColor="#ffBBBBBB"
         android:textSize="14sp"/>
 
