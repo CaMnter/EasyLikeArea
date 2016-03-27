@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:text="DK" />
+        android:text="DK"/>
 
     <Button
         android:id="@+id/query_bt"
@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:text="Query" />
+        android:text="Query"/>
 
     <Button
         android:id="@+id/likes_bt"
@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/query_bt"
         android:layout_centerHorizontal="true"
-        android:text="LikesView" />
+        android:text="LikesView"/>
 
     <Button
         android:id="@+id/cache_bt"
@@ -46,7 +46,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/likes_bt"
         android:layout_centerHorizontal="true"
-        android:text="Cache" />
+        android:text="Cache"/>
 
     <Button
         android:id="@+id/ca_bt"
@@ -54,7 +54,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:text="CM" />
+        android:text="CM"/>
 
     <Button
         android:id="@+id/ca_rm_bt"
@@ -62,6 +62,6 @@
         android:layout_height="wrap_content"
         android:layout_above="@id/ca_bt"
         android:layout_alignParentRight="true"
-        android:text="RM_CA" />
+        android:text="RM_CA"/>
 
 </RelativeLayout>
