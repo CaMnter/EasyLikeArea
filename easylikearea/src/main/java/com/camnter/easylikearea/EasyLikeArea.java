@@ -65,6 +65,7 @@ public class EasyLikeArea extends ViewGroup {
     private int fullLikeCount = NO_FULL;
 
     private boolean isFull = false;
+    private boolean addOmitView = true;
 
     private DisplayMetrics mMetrics;
 
@@ -262,6 +263,7 @@ public class EasyLikeArea extends ViewGroup {
             this.removeView(this.omitView);
         this.addView(v, this.getChildCount());
         this.omitView = v;
+        this.addOmitView = true;
         this.invalidate();
     }
 
@@ -291,12 +293,21 @@ public class EasyLikeArea extends ViewGroup {
 
     @Override
     public void addView(View child, int index) {
-        if (this.omitView == null)
-            throw new RuntimeException("You must addView(...) after setOmitView(View v)");
-        try {
-            this.easyProxy.addViewProxy(child, index);
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (this.addOmitView) {
+            try {
+                this.easyProxy.addViewProxy(child, index);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            this.addOmitView = false;
+        } else {
+            if (this.omitView == null)
+                throw new RuntimeException("You must addView(...) after setOmitView(View v)");
+            try {
+                this.easyProxy.addViewProxy(child, index);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
