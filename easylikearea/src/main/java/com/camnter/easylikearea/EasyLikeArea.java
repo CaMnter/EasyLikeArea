@@ -141,13 +141,13 @@ public class EasyLikeArea extends ViewGroup {
                 int likeWidth = like.getMeasuredWidth();
                 int likeHeight = like.getMeasuredHeight();
 
-                if (likesWidth + this.likeSpacing + likeWidth > this.maxViewWidth - this.omitViewWidth) {
+                if (likesWidth + this.likeSpacing + likeWidth > this.maxViewWidth - this.omitViewWidth - (paddingLeft + paddingRight)) {
                     resultWidth = likesWidth;
                     resultWidth += this.omitViewWidth;
                     this.isFull = true;
                     resultHeight = Math.max(resultHeight, Math.max(likeHeight, this.omitViewHeight));
                     break;
-                } else if (likesWidth + this.likeSpacing + likeWidth + this.likeSpacing + likeWidth > this.maxViewWidth - this.omitViewWidth) {
+                } else if (likesWidth + this.likeSpacing + likeWidth + this.likeSpacing + likeWidth > this.maxViewWidth - this.omitViewWidth - (paddingLeft + paddingRight)) {
                     likesWidth += likeWidth + this.likeSpacing;
                     resultWidth = likesWidth;
                     resultWidth += this.omitViewWidth;
