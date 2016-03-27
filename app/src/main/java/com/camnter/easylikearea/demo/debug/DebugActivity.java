@@ -38,7 +38,7 @@ public class DebugActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_debug);
+        setContentView(R.layout.activity_debug_one);
         this.easyLikeArea = (EasyLikeArea) this.findViewById(R.id.ela);
         this.mMetrics = this.getResources().getDisplayMetrics();
         this.easyLikeArea.setOmitView(LayoutInflater.from(this).inflate(R.layout.view_omit_style_one, null));
