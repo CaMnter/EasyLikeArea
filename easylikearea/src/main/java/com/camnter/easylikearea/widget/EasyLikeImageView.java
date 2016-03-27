@@ -181,7 +181,7 @@ public class EasyLikeImageView extends ImageView {
             Bundle bundle = (Bundle) state;
             super.onRestoreInstanceState(((Bundle) state).getParcelable(STATE_INSTANCE));
             this.imageType = bundle.getInt(STATE_TYPE, CIRCLE) == CIRCLE ? CIRCLE : ROUND;
-            this.mBorderRadius = bundle.getInt(STATE_BORDER_RADIUS);
+            this.mBorderRadius = bundle.getFloat(STATE_BORDER_RADIUS);
         } else {
             super.onRestoreInstanceState(state);
         }
