@@ -29,8 +29,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private int dkCount = 0;
     private int caCount = 0;
 
-    private EasyLikeImageView lastIv;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,7 +89,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }
                 });
                 this.easyLikeArea.addView(iv, 0);
-                this.lastIv = iv;
                 break;
             }
             case R.id.query_bt:
@@ -116,7 +113,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case R.id.ca_rm_bt:
-                this.easyLikeArea.removeView(this.lastIv);
+                this.easyLikeArea.removeViewAt(0);
                 break;
         }
     }

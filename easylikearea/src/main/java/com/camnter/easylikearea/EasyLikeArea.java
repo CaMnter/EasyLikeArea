@@ -478,7 +478,7 @@ public class EasyLikeArea extends ViewGroup {
                     // Remove cache
                     this.removeViewAtCache(index);
                     // Refresh cache
-                    View cache = this.getViewCache(index);
+                    View cache = this.getViewCache(EasyLikeArea.this.fullLikeCount - 1);
                     if (cache != null &&
                             EasyLikeArea.this.existOmitView() &&
                             cache.hashCode() != EasyLikeArea.this.omitView.hashCode()) {
