@@ -172,11 +172,11 @@ public class EasyLikeArea extends ViewGroup {
     /**
      * {@inheritDoc}
      *
-     * @param changed
-     * @param l
-     * @param t
-     * @param r
-     * @param b
+     * @param changed changed
+     * @param l       l
+     * @param t       t
+     * @param r       r
+     * @param b       b
      */
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
@@ -279,24 +279,42 @@ public class EasyLikeArea extends ViewGroup {
 
     @Override
     public final void addView(View child) {
-        this.easyProxy.addViewProxy(child);
+        try {
+            this.easyProxy.addViewProxy(child);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Override
     public void addView(View child, int index) {
-        this.easyProxy.addViewProxy(child, index);
+        try {
+            this.easyProxy.addViewProxy(child, index);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
     @Override
     public void removeView(View view) {
-        this.easyProxy.removeViewProxy(view);
+        try {
+            this.easyProxy.removeViewProxy(view);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
 
     @Override
     public void removeViewAt(int index) {
-        this.easyProxy.removeViewAtProxy(index);
+        try {
+            this.easyProxy.removeViewAtProxy(index);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -409,6 +427,38 @@ public class EasyLikeArea extends ViewGroup {
             }
         }
 
+        public void removeViewProxy(View view) {
+            if (view == null) return;
+            if (view.getParent() == null) return;
+            if (EasyLikeArea.this.existOmitView() &&
+                    view.hashCode() == EasyLikeArea.this.omitView.hashCode())
+                return;
+
+            if (EasyLikeArea.this.fullLikeCount != NO_FULL) {
+                EasyLikeArea.super.removeView(view);
+
+                // Remove cache
+                this.removeViewCache(view);
+
+                // Refresh cache
+                View cache = this.getViewCache(EasyLikeArea.this.fullLikeCount - 1);
+                if (cache != null &&
+                        EasyLikeArea.this.existOmitView() &&
+                        cache.hashCode() != EasyLikeArea.this.omitView.hashCode()) {
+                    if (cache.getParent() != null) {
+                        ((ViewGroup) cache.getParent()).removeView(cache);
+                    }
+                    EasyLikeArea.super.addView(cache, EasyLikeArea.this.fullLikeCount - 1);
+                }
+
+            } else {
+                EasyLikeArea.super.removeView(view);
+
+                // Remove cache
+                this.removeViewCache(view);
+            }
+        }
+
         public void removeViewAtProxy(int index) {
             View o = EasyLikeArea.this.getChildAt(index);
 
@@ -455,39 +505,6 @@ public class EasyLikeArea extends ViewGroup {
                 }
             }
         }
-
-        public void removeViewProxy(View view) {
-            if (view == null) return;
-            if (view.getParent() == null) return;
-            if (EasyLikeArea.this.existOmitView() &&
-                    view.hashCode() == EasyLikeArea.this.omitView.hashCode())
-                return;
-
-            if (EasyLikeArea.this.fullLikeCount != NO_FULL) {
-                EasyLikeArea.super.removeView(view);
-
-                // Remove cache
-                this.removeViewCache(view);
-
-                // Refresh cache
-                View cache = this.getViewCache(EasyLikeArea.this.fullLikeCount - 1);
-                if (cache != null &&
-                        EasyLikeArea.this.existOmitView() &&
-                        cache.hashCode() != EasyLikeArea.this.omitView.hashCode()) {
-                    if (cache.getParent() != null) {
-                        ((ViewGroup) cache.getParent()).removeView(cache);
-                    }
-                    EasyLikeArea.super.addView(cache, EasyLikeArea.this.fullLikeCount - 1);
-                }
-
-            } else {
-                EasyLikeArea.super.removeView(view);
-
-                // Remove cache
-                this.removeViewCache(view);
-            }
-        }
-
 
         @SuppressWarnings("unchecked")
         public <V extends View> V getViewCache(int position) {
