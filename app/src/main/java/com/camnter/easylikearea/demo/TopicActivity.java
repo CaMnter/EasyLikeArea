@@ -9,22 +9,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import com.camnter.easylikearea.EasyLikeArea;
 import com.camnter.easylikearea.widget.EasyLikeImageView;
 
 public class TopicActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private int[] avatars = {
-            R.mipmap.ic_harry_chen,
-            R.mipmap.ic_xingrz,
-            R.mipmap.ic_undownding,
-            R.mipmap.ic_fython,
-            R.mipmap.ic_kaede_akatsuki,
-            R.mipmap.ic_qixingchen,
-            R.mipmap.ic_peter_cai,
-            R.mipmap.ic_drakeet,
-    };
+    private int[] avatars = { R.mipmap.ic_harry_chen, R.mipmap.ic_harry_chen, R.mipmap.ic_xingrz,
+            R.mipmap.ic_undownding, R.mipmap.ic_fython, R.mipmap.ic_kaede_akatsuki,
+            R.mipmap.ic_qixingchen, R.mipmap.ic_peter_cai, R.mipmap.ic_drakeet, };
     private DisplayMetrics mMetrics;
 
     public EasyLikeArea topicEla;
@@ -36,8 +28,8 @@ public class TopicActivity extends AppCompatActivity implements View.OnClickList
     private static final int likeAddedColor = 0xff38B8C1;
     private static final int likeColor = 0xff97A4AF;
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+
+    @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.activity_topic);
         this.initViews();
@@ -45,12 +37,14 @@ public class TopicActivity extends AppCompatActivity implements View.OnClickList
         this.initLikeArea();
     }
 
+
     private void initViews() {
         this.mMetrics = this.getResources().getDisplayMetrics();
         this.topicEla = (EasyLikeArea) this.findViewById(R.id.topic_ela);
         this.addIv = this.createEasyLikeImageView();
         this.addIv.setImageResource(R.mipmap.ic_camnter);
     }
+
 
     private void initListeners() {
         this.likeTv = (TextView) this.findViewById(R.id.topic_like_tv);
@@ -61,32 +55,38 @@ public class TopicActivity extends AppCompatActivity implements View.OnClickList
         if (shareTv != null) shareTv.setOnClickListener(this);
     }
 
+
     private EasyLikeImageView createEasyLikeImageView() {
         EasyLikeImageView iv = new EasyLikeImageView(this);
         iv.setLayoutParams(new ViewGroup.LayoutParams(this.dp2px(36), this.dp2px(36)));
         return iv;
     }
 
+
     private void initLikeArea() {
         this.setOmitView();
+        int i = 0;
         for (int idRes : avatars) {
             EasyLikeImageView iv = this.createEasyLikeImageView();
             iv.setImageResource(idRes);
+            iv.setTag(i++);
             this.topicEla.addView(iv);
         }
     }
 
+
     public void setOmitView() {
-        this.topicEla.setOmitView(LayoutInflater.from(this).inflate(R.layout.view_omit_style_one, null));
+        this.topicEla.setOmitView(
+                LayoutInflater.from(this).inflate(R.layout.view_omit_style_one, null));
     }
+
 
     /**
      * Called when a view has been clicked.
      *
      * @param v The view that was clicked.
      */
-    @Override
-    public void onClick(View v) {
+    @Override public void onClick(View v) {
         switch (v.getId()) {
             case R.id.topic_like_tv:
                 if (!added) {
@@ -99,8 +99,27 @@ public class TopicActivity extends AppCompatActivity implements View.OnClickList
                     this.likeTv.setTextColor(likeColor);
                 }
                 break;
+            case R.id.topic_share_tv:
+                System.out.println("ChildCount : " + this.topicEla.getChildCount());
+                for (int i = 0; i < this.topicEla.getChildCount(); i++) {
+                    View child = this.topicEla.getChildAt(i);
+                    System.out.println(
+                            " i: " + i + "\t\t Name: " + child.getClass().getSimpleName() +
+                                    "\t\t Tag: " + child.getTag());
+                }
+                break;
+            case R.id.topic_chat_tv:
+                System.out.println("Cache Count : " + this.topicEla.getViewCache().size());
+                for (int i = 0; i < this.topicEla.getViewCache().size(); i++) {
+                    View child = this.topicEla.getViewCache().get(i);
+                    System.out.println(
+                            " i: " + i + "\t\t Name: " + child.getClass().getSimpleName() +
+                                    "\t\t Tag: " + child.getTag());
+                }
+                break;
         }
     }
+
 
     /**
      * Dp to px
@@ -111,5 +130,4 @@ public class TopicActivity extends AppCompatActivity implements View.OnClickList
     private int dp2px(int dp) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, this.mMetrics);
     }
-
 }

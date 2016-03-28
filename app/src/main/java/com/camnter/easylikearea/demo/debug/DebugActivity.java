@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
-
 import com.camnter.easylikearea.EasyLikeArea;
 import com.camnter.easylikearea.demo.R;
 import com.camnter.easylikearea.widget.EasyLikeImageView;
@@ -35,13 +34,14 @@ public class DebugActivity extends AppCompatActivity implements View.OnClickList
     private int dkCount = 0;
     private int caCount = 0;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+
+    @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_debug_one);
         this.easyLikeArea = (EasyLikeArea) this.findViewById(R.id.ela);
         this.mMetrics = this.getResources().getDisplayMetrics();
-        this.easyLikeArea.setOmitView(LayoutInflater.from(this).inflate(R.layout.view_omit_style_one, null));
+        this.easyLikeArea.setOmitView(
+                LayoutInflater.from(this).inflate(R.layout.view_omit_style_one, null));
         this.dkBt = (Button) this.findViewById(R.id.dk_bt);
         this.caBt = (Button) this.findViewById(R.id.ca_bt);
         this.queryBt = (Button) this.findViewById(R.id.query_bt);
@@ -54,16 +54,15 @@ public class DebugActivity extends AppCompatActivity implements View.OnClickList
         if (this.likesBt != null) this.likesBt.setOnClickListener(this);
         if (this.cacheBt != null) this.cacheBt.setOnClickListener(this);
         if (this.caRemoveBt != null) this.caRemoveBt.setOnClickListener(this);
-
     }
+
 
     /**
      * Called when a view has been clicked.
      *
      * @param v The view that was clicked.
      */
-    @Override
-    public void onClick(View v) {
+    @Override public void onClick(View v) {
         switch (v.getId()) {
             case R.id.dk_bt: {
                 EasyLikeImageView iv = new EasyLikeImageView(this);
@@ -71,11 +70,10 @@ public class DebugActivity extends AppCompatActivity implements View.OnClickList
                 iv.setImageResource(R.mipmap.ic_drakeet);
                 iv.setLayoutParams(new ViewGroup.LayoutParams(this.dp2px(36), this.dp2px(36)));
                 iv.setOnClickListener(new View.OnClickListener() {
-                    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-                    @Override
+                    @TargetApi(Build.VERSION_CODES.HONEYCOMB) @Override
                     public void onClick(View v) {
-                        Toast.makeText(DebugActivity.this, v.getTag() + "\nX = " + v.getX(), Toast.LENGTH_SHORT).show();
-
+                        Toast.makeText(DebugActivity.this, v.getTag() + "\nX = " + v.getX(),
+                                Toast.LENGTH_SHORT).show();
                     }
                 });
                 this.easyLikeArea.addView(iv, 0);
@@ -88,10 +86,10 @@ public class DebugActivity extends AppCompatActivity implements View.OnClickList
                 iv.setImageResource(R.mipmap.ic_camnter);
                 iv.setLayoutParams(new ViewGroup.LayoutParams(this.dp2px(36), this.dp2px(36)));
                 iv.setOnClickListener(new View.OnClickListener() {
-                    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-                    @Override
+                    @TargetApi(Build.VERSION_CODES.HONEYCOMB) @Override
                     public void onClick(View v) {
-                        Toast.makeText(DebugActivity.this, v.getTag() + "\nX = " + v.getX(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(DebugActivity.this, v.getTag() + "\nX = " + v.getX(),
+                                Toast.LENGTH_SHORT).show();
                     }
                 });
                 this.easyLikeArea.addView(iv, 0);
@@ -101,21 +99,27 @@ public class DebugActivity extends AppCompatActivity implements View.OnClickList
                 System.out.println("ChildCount : " + this.easyLikeArea.getChildCount());
                 for (int i = 0; i < this.easyLikeArea.getChildCount(); i++) {
                     View child = this.easyLikeArea.getChildAt(i);
-                    System.out.println(" i: " + i + "\t\t Name: " + child.getClass().getSimpleName() + "\t\t Tag: " + child.getTag());
+                    System.out.println(
+                            " i: " + i + "\t\t Name: " + child.getClass().getSimpleName() +
+                                    "\t\t Tag: " + child.getTag());
                 }
                 break;
             case R.id.likes_bt:
                 System.out.println("LikeViews Count : " + this.easyLikeArea.getLikeViews().size());
                 for (int i = 0; i < this.easyLikeArea.getLikeViews().size(); i++) {
                     View child = this.easyLikeArea.getLikeViews().get(i);
-                    System.out.println(" i: " + i + "\t\t Name: " + child.getClass().getSimpleName() + "\t\t Tag: " + child.getTag());
+                    System.out.println(
+                            " i: " + i + "\t\t Name: " + child.getClass().getSimpleName() +
+                                    "\t\t Tag: " + child.getTag());
                 }
                 break;
             case R.id.cache_bt:
                 System.out.println("Cache Count : " + this.easyLikeArea.getViewCache().size());
                 for (int i = 0; i < this.easyLikeArea.getViewCache().size(); i++) {
                     View child = this.easyLikeArea.getViewCache().get(i);
-                    System.out.println(" i: " + i + "\t\t Name: " + child.getClass().getSimpleName() + "\t\t Tag: " + child.getTag());
+                    System.out.println(
+                            " i: " + i + "\t\t Name: " + child.getClass().getSimpleName() +
+                                    "\t\t Tag: " + child.getTag());
                 }
                 break;
             case R.id.ca_rm_bt:
@@ -123,6 +127,7 @@ public class DebugActivity extends AppCompatActivity implements View.OnClickList
                 break;
         }
     }
+
 
     /**
      * Dp to px
@@ -133,5 +138,4 @@ public class DebugActivity extends AppCompatActivity implements View.OnClickList
     private int dp2px(int dp) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, this.mMetrics);
     }
-
 }

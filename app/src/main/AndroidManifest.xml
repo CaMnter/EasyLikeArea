@@ -8,14 +8,14 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".TopicActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".TopicActivity"/>
+        <!--<activity android:name=".TopicActivity"/>-->
         <activity android:name=".QZoneActivity"/>
         <activity android:name=".debug.DebugActivity"/>
     </application>

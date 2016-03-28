@@ -24,7 +24,6 @@ import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
-
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -69,20 +68,24 @@ public class EasyLikeArea extends ViewGroup {
 
     private DisplayMetrics mMetrics;
 
+
     public EasyLikeArea(Context context) {
         super(context);
         this.init(context, null);
     }
+
 
     public EasyLikeArea(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.init(context, attrs);
     }
 
+
     public EasyLikeArea(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         this.init(context, attrs);
     }
+
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public EasyLikeArea(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
@@ -90,19 +93,23 @@ public class EasyLikeArea extends ViewGroup {
         this.init(context, attrs);
     }
 
+
     private void init(Context context, AttributeSet attrs) {
         this.mMetrics = this.getResources().getDisplayMetrics();
         this.easyProxy = new EasyViewProxy();
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.EasyLikeArea);
-        this.likeSpacing = a.getDimensionPixelOffset(R.styleable.EasyLikeArea_easyLikeAreaLikeSpacing, this.dp2px(DEFAULT_LIKE_SPACING));
-        this.omitSpacing = a.getDimensionPixelOffset(R.styleable.EasyLikeArea_easyLikeAreaOmitSpacing, this.dp2px(DEFAULT_OMIT_SPACING));
-        this.omitCenter = a.getBoolean(R.styleable.EasyLikeArea_easyLikeAreaOmitCenter, DEFAULT_OMIT_CENTER);
+        this.likeSpacing = a.getDimensionPixelOffset(
+                R.styleable.EasyLikeArea_easyLikeAreaLikeSpacing, this.dp2px(DEFAULT_LIKE_SPACING));
+        this.omitSpacing = a.getDimensionPixelOffset(
+                R.styleable.EasyLikeArea_easyLikeAreaOmitSpacing, this.dp2px(DEFAULT_OMIT_SPACING));
+        this.omitCenter = a.getBoolean(R.styleable.EasyLikeArea_easyLikeAreaOmitCenter,
+                DEFAULT_OMIT_CENTER);
         a.recycle();
     }
 
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+
+    @Override protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
         int viewWidth = MeasureSpec.getSize(widthMeasureSpec);
@@ -142,18 +149,27 @@ public class EasyLikeArea extends ViewGroup {
                 int likeWidth = like.getMeasuredWidth();
                 int likeHeight = like.getMeasuredHeight();
 
-                if (likesWidth + this.likeSpacing + likeWidth > this.maxViewWidth - this.omitViewWidth - (paddingLeft + paddingRight)) {
+                if (likesWidth + this.likeSpacing + likeWidth >
+                        this.maxViewWidth - this.omitViewWidth - (paddingLeft + paddingRight)) {
                     resultWidth = likesWidth;
                     resultWidth += this.omitViewWidth;
                     this.isFull = true;
-                    resultHeight = Math.max(resultHeight, Math.max(likeHeight, this.omitViewHeight));
+                    this.fullLikeCount = i + 1;
+                    resultHeight = Math.max(resultHeight,
+                            Math.max(likeHeight, this.omitViewHeight));
                     break;
-                } else if (likesWidth + this.likeSpacing + likeWidth + this.likeSpacing + likeWidth > this.maxViewWidth - this.omitViewWidth - (paddingLeft + paddingRight)) {
+                } else if (
+                        likesWidth + this.likeSpacing + likeWidth + this.likeSpacing + likeWidth >
+                                this.maxViewWidth - this.omitViewWidth -
+                                        (paddingLeft + paddingRight)) {
                     likesWidth += likeWidth + this.likeSpacing;
                     resultWidth = likesWidth;
                     resultWidth += this.omitViewWidth;
                     this.isFull = true;
-                    resultHeight = Math.max(resultHeight, Math.max(likeHeight, this.omitViewHeight));
+                    this.fullLikeCount = i + 1;
+                    resultHeight = Math.max(resultHeight,
+                            Math.max(likeHeight, this.omitViewHeight));
+                    break;
                 } else {
                     this.isFull = false;
                     likesWidth += likeWidth + this.likeSpacing;
@@ -162,6 +178,7 @@ public class EasyLikeArea extends ViewGroup {
 
                 resultHeight = Math.max(resultHeight, likeHeight);
             }
+            if (this.fullLikeCount < childCount - 1) super.removeViewAt(this.fullLikeCount);
         }
 
         resultWidth += paddingLeft + paddingRight;
@@ -170,22 +187,21 @@ public class EasyLikeArea extends ViewGroup {
                 (heightMode == MeasureSpec.EXACTLY) ? viewHeight : resultHeight);
     }
 
+
     /**
      * {@inheritDoc}
      *
      * @param changed changed
-     * @param l       l
-     * @param t       t
-     * @param r       r
-     * @param b       b
+     * @param l l
+     * @param t t
+     * @param r r
+     * @param b b
      */
-    @Override
-    protected void onLayout(boolean changed, int l, int t, int r, int b) {
+    @Override protected void onLayout(boolean changed, int l, int t, int r, int b) {
         this.likeViews.clear();
 
         int paddingTop = this.getPaddingTop();
         int paddingLeft = this.getPaddingLeft();
-
 
         int childCount = this.getChildCount();
         if (this.isHasLikes()) {
@@ -198,7 +214,6 @@ public class EasyLikeArea extends ViewGroup {
 
         int left = paddingLeft;
         if (this.isFull) {
-            this.fullLikeCount = this.likeViews.size();
             for (int i = 0; i < this.likeViews.size(); i++) {
                 View like = this.likeViews.get(i);
                 int likeLeft = left;
@@ -235,102 +250,97 @@ public class EasyLikeArea extends ViewGroup {
         }
     }
 
-    @Override
-    public LayoutParams generateLayoutParams(AttributeSet attrs) {
+
+    @Override public LayoutParams generateLayoutParams(AttributeSet attrs) {
         return new MarginLayoutParams(this.getContext(), attrs);
     }
 
-    @Override
-    protected LayoutParams generateLayoutParams(LayoutParams p) {
+
+    @Override protected LayoutParams generateLayoutParams(LayoutParams p) {
         return new MarginLayoutParams(p);
     }
 
-    @Override
-    protected LayoutParams generateDefaultLayoutParams() {
+
+    @Override protected LayoutParams generateDefaultLayoutParams() {
         return new MarginLayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
     }
+
 
     public boolean isHasLikes() {
         return this.getChildCount() > 1;
     }
 
+
     public boolean existOmitView() {
         return this.omitView != null && this.omitView.getVisibility() == VISIBLE;
     }
 
+
     public void setOmitView(View v) {
-        if (this.omitView != null)
-            this.removeView(this.omitView);
+        if (this.omitView != null) this.removeView(this.omitView);
         this.addView(v, this.getChildCount());
         this.omitView = v;
         this.addOmitView = true;
         this.invalidate();
     }
 
+
     public View getOmitView() {
         return this.omitView;
     }
+
 
     public List<View> getLikeViews() {
         return likeViews;
     }
 
+
     public LinkedList<View> getViewCache() {
         return this.easyProxy.getCacheViews();
     }
 
-    @Override
-    public final void addView(View child) {
-        if (this.omitView == null)
+
+    @Override public final void addView(View child) {
+        if (this.omitView == null) {
             throw new RuntimeException("You must addView(...) after setOmitView(View v)");
+        }
         try {
             this.easyProxy.addViewProxy(child, 0);
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
-    @Override
-    public void addView(View child, int index) {
-        if (this.addOmitView) {
-            try {
-                this.easyProxy.addViewProxy(child, index);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            this.addOmitView = false;
-        } else {
-            if (this.omitView == null)
-                throw new RuntimeException("You must addView(...) after setOmitView(View v)");
-            try {
-                this.easyProxy.addViewProxy(child, index);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+
+    @Override public void addView(View child, int index) {
+        if (!this.addOmitView && this.omitView == null) {
+            throw new RuntimeException("You must addView(...) after setOmitView(View v)");
+        }
+        try {
+            this.easyProxy.addViewProxy(child, index);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
 
-    @Override
-    public void removeView(View view) {
+    @Override public void removeView(View view) {
         try {
             this.easyProxy.removeViewProxy(view);
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
 
-    @Override
-    public void removeViewAt(int index) {
+    @Override public void removeViewAt(int index) {
         try {
             this.easyProxy.removeViewAtProxy(index);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
 
     /**
      * Dp to px
@@ -342,6 +352,7 @@ public class EasyLikeArea extends ViewGroup {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, this.mMetrics);
     }
 
+
     private class EasyViewProxy {
 
         private static final int DEFAULT_MAX_CACHE_VIEW_COUNT = 17;
@@ -349,110 +360,77 @@ public class EasyLikeArea extends ViewGroup {
         private LinkedList<View> mCacheViews;
         private int maxSize;
 
+
         public EasyViewProxy() {
             this(DEFAULT_MAX_CACHE_VIEW_COUNT);
         }
+
 
         public EasyViewProxy(int maxSize) {
             this.mCacheViews = new LinkedList<>();
             this.maxSize = maxSize;
         }
 
+
         private void addViewCache(View view) {
             this.mCacheViews.add(0, view);
-            if (this.mCacheViews.size() > this.maxSize)
+            if (this.mCacheViews.size() > this.maxSize) {
                 this.mCacheViews.remove(this.mCacheViews.size() - 2);
+            }
         }
+
 
         private void addViewCache(View view, int index) {
             if (index < this.mCacheViews.size() - 2) {
                 this.mCacheViews.add(index, view);
-                if (this.mCacheViews.size() > this.maxSize)
+                if (this.mCacheViews.size() > this.maxSize) {
                     this.mCacheViews.remove(this.mCacheViews.size() - 2);
+                }
             } else {
-                if (this.mCacheViews.size() + 1 > this.maxSize)
+                if (this.mCacheViews.size() + 1 > this.maxSize) {
                     this.mCacheViews.remove(this.mCacheViews.size() - 2);
+                }
                 this.mCacheViews.add(this.mCacheViews.size() - 2, view);
             }
         }
 
+
         private void removeViewCache(View view) {
-            if (this.mCacheViews.contains(view))
-                this.mCacheViews.remove(view);
+            if (this.mCacheViews.contains(view)) this.mCacheViews.remove(view);
         }
 
 
         private void removeViewAtCache(int index) {
             if (index > this.mCacheViews.size() - 1) return;
-            if (this.mCacheViews.get(index) != null)
-                this.mCacheViews.remove(index);
+            if (this.mCacheViews.get(index) != null) this.mCacheViews.remove(index);
         }
 
-        /**
-         * TODO: beta
-         *
-         * @param child child
-         */
-        public void addViewProxy(View child) {
-            if (EasyLikeArea.this.omitView != null) {
-                if (child.hashCode() == EasyLikeArea.this.omitView.hashCode()) return;
-                if (EasyLikeArea.this.fullLikeCount != NO_FULL) {
-                    EasyLikeArea.super.addView(child, EasyLikeArea.this.fullLikeCount - 1);
-                    EasyLikeArea.super.removeViewAt(EasyLikeArea.this.fullLikeCount);
-                    // Add cache
-                    this.addViewCache(child, EasyLikeArea.this.fullLikeCount - 1);
-                } else {
-                    EasyLikeArea.super.addView(child, EasyLikeArea.this.getChildCount() - 1);
-                    // Add cache
-                    this.addViewCache(child);
-                }
-            } else {
-                if (EasyLikeArea.this.fullLikeCount != NO_FULL) {
-                    EasyLikeArea.super.addView(child, EasyLikeArea.this.fullLikeCount - 1);
-                    EasyLikeArea.super.removeViewAt(EasyLikeArea.this.fullLikeCount);
-                    // Add cache
-                    this.addViewCache(child, EasyLikeArea.this.fullLikeCount - 1);
-                } else {
-                    EasyLikeArea.super.addView(child, EasyLikeArea.this.getChildCount() - 1);
-                    // Add cache
-                    this.addViewCache(child);
-                }
-            }
-        }
 
         public void addViewProxy(View child, int index) {
-            if (EasyLikeArea.this.omitView != null && index > EasyLikeArea.this.getChildCount() - 1) {
-//                if (child.hashCode() == EasyLikeArea.this.omitView.hashCode()) return;
-                if (EasyLikeArea.this.fullLikeCount != NO_FULL) {
-                    EasyLikeArea.super.addView(child, EasyLikeArea.this.fullLikeCount - 1);
-                    EasyLikeArea.super.removeViewAt(EasyLikeArea.this.fullLikeCount);
-                    // Add cache
-                    this.addViewCache(child, EasyLikeArea.this.fullLikeCount - 1);
-                } else {
-                    EasyLikeArea.super.addView(child, EasyLikeArea.this.getChildCount() - 1);
-                    // Add cache
-                    this.addViewCache(child);
-                }
+            if (EasyLikeArea.this.getChildCount() > 0 &&
+                    index > EasyLikeArea.this.getChildCount() - 1) {
+                index = EasyLikeArea.this.fullLikeCount - 1;
+            }
+            if (EasyLikeArea.this.fullLikeCount != NO_FULL) {
+                EasyLikeArea.super.addView(child, index);
+                EasyLikeArea.super.removeViewAt(EasyLikeArea.this.fullLikeCount);
+                // Add cache
+                this.addViewCache(child, EasyLikeArea.this.fullLikeCount - 1);
             } else {
-                if (EasyLikeArea.this.fullLikeCount != NO_FULL) {
-                    EasyLikeArea.super.addView(child, index);
-                    EasyLikeArea.super.removeViewAt(EasyLikeArea.this.fullLikeCount);
-                    // Add cache
-                    this.addViewCache(child, index);
-                } else {
-                    EasyLikeArea.super.addView(child, index);
-                    // Add cache
-                    this.addViewCache(child);
-                }
+                EasyLikeArea.super.addView(child, 0);
+                // Add cache
+                this.addViewCache(child);
             }
         }
+
 
         public void removeViewProxy(View view) {
             if (view == null) return;
             if (view.getParent() == null) return;
             if (EasyLikeArea.this.existOmitView() &&
-                    view.hashCode() == EasyLikeArea.this.omitView.hashCode())
+                    view.hashCode() == EasyLikeArea.this.omitView.hashCode()) {
                 return;
+            }
 
             if (EasyLikeArea.this.fullLikeCount != NO_FULL) {
                 EasyLikeArea.super.removeView(view);
@@ -470,7 +448,6 @@ public class EasyLikeArea extends ViewGroup {
                     }
                     EasyLikeArea.super.addView(cache, EasyLikeArea.this.fullLikeCount - 1);
                 }
-
             } else {
                 EasyLikeArea.super.removeView(view);
 
@@ -479,19 +456,22 @@ public class EasyLikeArea extends ViewGroup {
             }
         }
 
+
         public void removeViewAtProxy(int index) {
             View o = EasyLikeArea.this.getChildAt(index);
 
             // Overstep
-            if (index > EasyLikeArea.this.getChildCount() - 1)
+            if (index > EasyLikeArea.this.getChildCount() - 1) {
                 index = EasyLikeArea.this.fullLikeCount - 1;
+            }
 
             if (EasyLikeArea.this.omitView != null) {
-                if (o == null)
-                    o = EasyLikeArea.super.getChildAt(index);
+                if (o == null) o = EasyLikeArea.super.getChildAt(index);
 
                 if (EasyLikeArea.this.existOmitView() &&
-                        o.hashCode() == EasyLikeArea.this.omitView.hashCode()) return;
+                        o.hashCode() == EasyLikeArea.this.omitView.hashCode()) {
+                    return;
+                }
 
                 if (EasyLikeArea.this.fullLikeCount != NO_FULL) {
                     EasyLikeArea.super.removeViewAt(index);
@@ -507,7 +487,6 @@ public class EasyLikeArea extends ViewGroup {
                         }
                         EasyLikeArea.super.addView(cache, EasyLikeArea.this.fullLikeCount - 1);
                     }
-
                 } else {
                     EasyLikeArea.super.removeViewAt(index);
                     // Remove cache
@@ -520,23 +499,22 @@ public class EasyLikeArea extends ViewGroup {
                 if (EasyLikeArea.this.fullLikeCount != NO_FULL) {
                     View cache = this.getViewCache(index);
                     // Refresh cache
-                    if (cache != null)
+                    if (cache != null) {
                         EasyLikeArea.super.addView(cache, EasyLikeArea.this.fullLikeCount - 1);
+                    }
                 }
             }
         }
 
-        @SuppressWarnings("unchecked")
-        public <V extends View> V getViewCache(int position) {
-            if (this.mCacheViews.get(position) != null)
-                return (V) this.mCacheViews.get(position);
+
+        @SuppressWarnings("unchecked") public <V extends View> V getViewCache(int position) {
+            if (this.mCacheViews.get(position) != null) return (V) this.mCacheViews.get(position);
             return null;
         }
+
 
         public LinkedList<View> getCacheViews() {
             return mCacheViews;
         }
-
     }
-
 }
