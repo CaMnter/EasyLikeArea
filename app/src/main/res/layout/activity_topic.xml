@@ -81,7 +81,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/topic_content_bottom_v"
-        android:background="#ff000000"
+        android:background="#ffffffff"
         android:paddingBottom="10dp"
         android:paddingLeft="12.5dp"
         android:paddingRight="12.5dp"

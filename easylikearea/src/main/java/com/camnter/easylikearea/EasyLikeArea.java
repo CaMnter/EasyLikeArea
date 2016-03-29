@@ -178,7 +178,9 @@ public class EasyLikeArea extends ViewGroup {
 
                 resultHeight = Math.max(resultHeight, likeHeight);
             }
-            if (this.fullLikeCount < childCount - 1) super.removeViewAt(this.fullLikeCount);
+            if (this.fullLikeCount != NO_FULL && this.fullLikeCount < childCount - 1) {
+                super.removeViewAt(this.fullLikeCount);
+            }
         }
 
         resultWidth += paddingLeft + paddingRight;
@@ -415,7 +417,8 @@ public class EasyLikeArea extends ViewGroup {
                 EasyLikeArea.super.addView(child, index);
                 EasyLikeArea.super.removeViewAt(EasyLikeArea.this.fullLikeCount);
                 // Add cache
-                this.addViewCache(child, EasyLikeArea.this.fullLikeCount - 1);
+                //this.addViewCache(child, EasyLikeArea.this.fullLikeCount - 1);
+                this.addViewCache(child);
             } else {
                 EasyLikeArea.super.addView(child, 0);
                 // Add cache
@@ -508,7 +511,9 @@ public class EasyLikeArea extends ViewGroup {
 
 
         @SuppressWarnings("unchecked") public <V extends View> V getViewCache(int position) {
-            if (this.mCacheViews.get(position) != null) return (V) this.mCacheViews.get(position);
+            if (this.mCacheViews.size() - 1 > position && this.mCacheViews.get(position) != null) {
+                return (V) this.mCacheViews.get(position);
+            }
             return null;
         }
 

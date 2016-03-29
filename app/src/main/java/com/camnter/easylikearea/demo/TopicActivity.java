@@ -14,7 +14,7 @@ import com.camnter.easylikearea.widget.EasyLikeImageView;
 
 public class TopicActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private int[] avatars = { R.mipmap.ic_harry_chen, R.mipmap.ic_harry_chen, R.mipmap.ic_xingrz,
+    private int[] avatars = { R.mipmap.ic_harry_chen, R.mipmap.ic_randy_lu, R.mipmap.ic_xingrz,
             R.mipmap.ic_undownding, R.mipmap.ic_fython, R.mipmap.ic_kaede_akatsuki,
             R.mipmap.ic_qixingchen, R.mipmap.ic_peter_cai, R.mipmap.ic_drakeet, };
     private DisplayMetrics mMetrics;
@@ -100,22 +100,9 @@ public class TopicActivity extends AppCompatActivity implements View.OnClickList
                 }
                 break;
             case R.id.topic_share_tv:
-                System.out.println("ChildCount : " + this.topicEla.getChildCount());
-                for (int i = 0; i < this.topicEla.getChildCount(); i++) {
-                    View child = this.topicEla.getChildAt(i);
-                    System.out.println(
-                            " i: " + i + "\t\t Name: " + child.getClass().getSimpleName() +
-                                    "\t\t Tag: " + child.getTag());
-                }
+                this.topicEla.removeViewAt(0);
                 break;
             case R.id.topic_chat_tv:
-                System.out.println("Cache Count : " + this.topicEla.getViewCache().size());
-                for (int i = 0; i < this.topicEla.getViewCache().size(); i++) {
-                    View child = this.topicEla.getViewCache().get(i);
-                    System.out.println(
-                            " i: " + i + "\t\t Name: " + child.getClass().getSimpleName() +
-                                    "\t\t Tag: " + child.getTag());
-                }
                 break;
         }
     }
