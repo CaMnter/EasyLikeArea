@@ -28,6 +28,8 @@ public class TopicActivity extends AppCompatActivity implements View.OnClickList
     private static final int likeAddedColor = 0xff38B8C1;
     private static final int likeColor = 0xff97A4AF;
 
+    public TextView omitTv;
+
 
     @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,20 +66,25 @@ public class TopicActivity extends AppCompatActivity implements View.OnClickList
 
 
     private void initLikeArea() {
-        this.setOmitView();
-        int i = 0;
+        this.setOmitView(avatars.length);
         for (int idRes : avatars) {
             EasyLikeImageView iv = this.createEasyLikeImageView();
             iv.setImageResource(idRes);
-            iv.setTag(i++);
             this.topicEla.addView(iv);
         }
     }
 
 
-    public void setOmitView() {
-        this.topicEla.setOmitView(
-                LayoutInflater.from(this).inflate(R.layout.view_omit_style_one, null));
+    public void setOmitView(int count) {
+        View omitView = LayoutInflater.from(this).inflate(R.layout.view_omit_style_topic, null);
+        this.omitTv = (TextView) omitView.findViewById(R.id.topic_omit_tv);
+        this.omitTv.setText(this.getString(this.getOmitVieStringFormatId(), count));
+        this.topicEla.setOmitView(omitView);
+    }
+
+
+    public int getOmitVieStringFormatId() {
+        return R.string.view_omit_style_topic_content;
     }
 
 
@@ -93,14 +100,17 @@ public class TopicActivity extends AppCompatActivity implements View.OnClickList
                     this.topicEla.addView(this.addIv);
                     this.added = true;
                     this.likeTv.setTextColor(likeAddedColor);
+                    this.omitTv.setText(
+                            this.getString(this.getOmitVieStringFormatId(), avatars.length + 1));
                 } else {
                     this.topicEla.removeView(this.addIv);
                     this.added = false;
                     this.likeTv.setTextColor(likeColor);
+                    this.omitTv.setText(
+                            this.getString(this.getOmitVieStringFormatId(), avatars.length));
                 }
                 break;
             case R.id.topic_share_tv:
-                this.topicEla.removeViewAt(0);
                 break;
             case R.id.topic_chat_tv:
                 break;

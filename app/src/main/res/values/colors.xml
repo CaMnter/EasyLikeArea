@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#ff3F51B5</color>
+    <color name="colorPrimaryDark">#ff303F9F</color>
+    <color name="colorAccent">#ffFF4081</color>
+
+    <color name="main_item_tv">#ff58BE13</color>
+
+    <color name="qzone_omit_tv">#ffBBBBBB</color>
+    <color name="topic_omit_tv">#ffBBBBBB</color>
+
+    <color name="white">#ffffffff</color>
+    <color name="topic_user_name_tv">#ff84A2BC</color>
+    <color name="topic_user_location_tv">#ffBBBBBB</color>
+    <color name="topic_tag_tv">#ffEB9F7B</color>
+    <color name="topic_content_side_v">#ffEFEFEF</color>
+
+    <color name="topic_content_button_v">#ff97A4AF</color>
+
 </resources>

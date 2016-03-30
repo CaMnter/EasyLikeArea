@@ -41,7 +41,7 @@ public class DebugActivity extends AppCompatActivity implements View.OnClickList
         this.easyLikeArea = (EasyLikeArea) this.findViewById(R.id.ela);
         this.mMetrics = this.getResources().getDisplayMetrics();
         this.easyLikeArea.setOmitView(
-                LayoutInflater.from(this).inflate(R.layout.view_omit_style_one, null));
+                LayoutInflater.from(this).inflate(R.layout.view_omit_style_debug, null));
         this.dkBt = (Button) this.findViewById(R.id.dk_bt);
         this.caBt = (Button) this.findViewById(R.id.ca_bt);
         this.queryBt = (Button) this.findViewById(R.id.query_bt);

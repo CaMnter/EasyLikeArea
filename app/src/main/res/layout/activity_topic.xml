@@ -7,7 +7,7 @@
         android:id="@+id/topic_content_rl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#ffffffff"
+        android:background="@color/white"
         android:paddingBottom="13.5dp"
         android:paddingEnd="12dp"
         android:paddingLeft="12dp"
@@ -30,9 +30,9 @@
             android:layout_marginStart="8dp"
             android:layout_toEndOf="@id/topic_user_iv"
             android:layout_toRightOf="@id/topic_user_iv"
-            android:text="Kaede Akatsuki"
-            android:textColor="#ff84A2BC"
-            android:textSize="15sp"/>
+            android:text="@string/topic_user_name_tv"
+            android:textColor="@color/topic_user_name_tv"
+            android:textSize="@dimen/topic_user_name_tv"/>
 
         <TextView
             android:id="@+id/topic_user_location_tv"
@@ -43,9 +43,9 @@
             android:layout_marginStart="8dp"
             android:layout_toEndOf="@id/topic_user_iv"
             android:layout_toRightOf="@id/topic_user_iv"
-            android:text="妖都"
-            android:textColor="#ffBBBBBB"
-            android:textSize="12sp"/>
+            android:text="@string/topic_user_location_tv"
+            android:textColor="@color/topic_user_location_tv"
+            android:textSize="@dimen/topic_user_location_tv"/>
 
         <TextView
             android:id="@+id/topic_tag_tv"
@@ -55,9 +55,9 @@
             android:layout_alignParentRight="true"
             android:layout_alignTop="@id/topic_user_iv"
             android:background="@drawable/bg_topic_tag_tv"
-            android:text="KAせんせい"
-            android:textColor="#ffEB9F7B"
-            android:textSize="12sp"/>
+            android:text="@string/topic_tag_tv"
+            android:textColor="@color/topic_tag_tv"
+            android:textSize="@dimen/topic_tag_tv"/>
 
         <TextView
             android:id="@+id/topic_content_tv"
@@ -74,14 +74,14 @@
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:layout_below="@id/topic_content_rl"
-        android:background="#ffEFEFEF"/>
+        android:background="@color/topic_content_side_v"/>
 
     <com.camnter.easylikearea.EasyLikeArea
         android:id="@+id/topic_ela"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/topic_content_bottom_v"
-        android:background="#ffffffff"
+        android:background="@color/white"
         android:paddingBottom="10dp"
         android:paddingLeft="12.5dp"
         android:paddingRight="12.5dp"
@@ -92,14 +92,14 @@
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:layout_below="@id/topic_ela"
-        android:background="#ffEFEFEF"/>
+        android:background="@color/topic_content_side_v"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/topic_ela_bottom_v"
         android:layout_marginTop="20dp"
-        android:background="#ffffffff"
+        android:background="@color/white"
         android:gravity="center_vertical">
 
         <TextView
@@ -110,14 +110,14 @@
             android:background="@drawable/bg_topic_button"
             android:drawablePadding="5dp"
             android:gravity="center"
-            android:text="赞"
-            android:textColor="#ff97A4AF"
-            android:textSize="14sp"/>
+            android:text="@string/topic_like_tv"
+            android:textColor="@color/topic_content_button_v"
+            android:textSize="@dimen/topic_content_button_v"/>
 
         <View
             android:layout_width="0.5dp"
             android:layout_height="12dp"
-            android:background="#ffE5E5E5"/>
+            android:background="@color/topic_content_side_v"/>
 
         <TextView
             android:id="@+id/topic_chat_tv"
@@ -127,9 +127,9 @@
             android:background="@drawable/bg_topic_button"
             android:drawablePadding="5dp"
             android:gravity="center"
-            android:text="评论"
-            android:textColor="#ff97A4AF"
-            android:textSize="14sp"/>
+            android:text="@string/topic_chat_tv"
+            android:textColor="@color/topic_content_button_v"
+            android:textSize="@dimen/topic_content_button_v"/>
 
         <View
             android:layout_width="0.5dp"
@@ -144,9 +144,9 @@
             android:background="@drawable/bg_topic_button"
             android:drawablePadding="5dp"
             android:gravity="center"
-            android:text="分享"
-            android:textColor="#ff97A4AF"
-            android:textSize="14sp"/>
+            android:text="@string/topic_share_tv"
+            android:textColor="@color/topic_content_button_v"
+            android:textSize="@dimen/topic_content_button_v"/>
 
     </LinearLayout>
 

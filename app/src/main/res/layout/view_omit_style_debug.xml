@@ -11,12 +11,13 @@
         android:src="@mipmap/img_praise_more"/>
 
     <TextView
+        android:id="@+id/topic_omit_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
-        android:text="@string/view_omit_style_one_content"
-        android:textColor="#ffBBBBBB"
-        android:textSize="12sp"/>
+        android:text="@string/view_omit_style_debug_content"
+        android:textColor="@color/topic_omit_tv"
+        android:textSize="@dimen/topic_omit_tv"/>
 
 </LinearLayout>
