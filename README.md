@@ -63,6 +63,14 @@ private void initLikeArea() {
         this.topicEla.addView(iv);
     }
 }
+
+
+public void setOmitView(int count) {
+    View omitView = LayoutInflater.from(this).inflate(R.layout.view_omit_style_topic, null);
+    this.omitTv = (TextView) omitView.findViewById(R.id.topic_omit_tv);
+    this.omitTv.setText(this.getString(this.getOmitVieStringFormatId(), count));
+    this.topicEla.setOmitView(omitView);
+}
 ```
 
 And you can use the **EasyLikeImageView**
