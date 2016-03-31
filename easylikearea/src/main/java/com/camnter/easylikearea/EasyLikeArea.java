@@ -382,21 +382,6 @@ public class EasyLikeArea extends ViewGroup {
         }
 
 
-        private void addViewCache(View view, int index) {
-            if (index < this.mCacheViews.size() - 2) {
-                this.mCacheViews.add(index, view);
-                if (this.mCacheViews.size() > this.maxSize) {
-                    this.mCacheViews.remove(this.mCacheViews.size() - 2);
-                }
-            } else {
-                if (this.mCacheViews.size() + 1 > this.maxSize) {
-                    this.mCacheViews.remove(this.mCacheViews.size() - 2);
-                }
-                this.mCacheViews.add(this.mCacheViews.size() - 2, view);
-            }
-        }
-
-
         private void removeViewCache(View view) {
             if (this.mCacheViews.contains(view)) this.mCacheViews.remove(view);
         }
