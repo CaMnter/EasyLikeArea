@@ -1,4 +1,20 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?><!--
+
+ Copyright (C) 2016 CaMnter yuanyu.camnter@gmail.com
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+
+-->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -20,7 +36,7 @@
             android:id="@+id/topic_user_iv"
             android:layout_width="36dp"
             android:layout_height="36dp"
-            android:src="@mipmap/ic_kaede_akatsuki"/>
+            android:src="@mipmap/ic_kaede_akatsuki" />
 
         <TextView
             android:id="@+id/topic_user_name_tv"
@@ -33,7 +49,7 @@
             android:layout_toRightOf="@id/topic_user_iv"
             android:text="@string/topic_user_name_tv"
             android:textColor="@color/topic_user_name_tv"
-            android:textSize="@dimen/topic_user_name_tv"/>
+            android:textSize="@dimen/topic_user_name_tv" />
 
         <TextView
             android:id="@+id/topic_user_location_tv"
@@ -46,7 +62,7 @@
             android:layout_toRightOf="@id/topic_user_iv"
             android:text="@string/topic_user_location_tv"
             android:textColor="@color/topic_user_location_tv"
-            android:textSize="@dimen/topic_user_location_tv"/>
+            android:textSize="@dimen/topic_user_location_tv" />
 
         <TextView
             android:id="@+id/topic_tag_tv"
@@ -58,7 +74,7 @@
             android:background="@drawable/bg_topic_tag_tv"
             android:text="@string/topic_tag_tv"
             android:textColor="@color/topic_tag_tv"
-            android:textSize="@dimen/topic_tag_tv"/>
+            android:textSize="@dimen/topic_tag_tv" />
 
         <TextView
             android:id="@+id/topic_content_tv"
@@ -66,7 +82,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/topic_user_iv"
             android:layout_marginTop="12.5dp"
-            android:text="@string/topic_content"/>
+            android:text="@string/topic_content" />
 
     </RelativeLayout>
 
@@ -75,7 +91,7 @@
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:layout_below="@id/topic_content_rl"
-        android:background="@color/topic_content_side_v"/>
+        android:background="@color/topic_content_side_v" />
 
     <com.camnter.easylikearea.EasyLikeArea
         android:id="@+id/topic_ela"
@@ -85,18 +101,18 @@
         android:background="@color/white"
         android:paddingBottom="10dp"
         android:paddingLeft="12.5dp"
-        app:easyLikeAreaOmitCenter="true"
-        app:easyLikeAreaLikeSpacing="5dp"
-        app:easyLikeAreaOmitSpacing="8dp"
         android:paddingRight="12.5dp"
-        android:paddingTop="10dp"/>
+        android:paddingTop="10dp"
+        app:easyLikeAreaLikeSpacing="5dp"
+        app:easyLikeAreaOmitCenter="true"
+        app:easyLikeAreaOmitSpacing="8dp" />
 
     <View
         android:id="@+id/topic_ela_bottom_v"
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:layout_below="@id/topic_ela"
-        android:background="@color/topic_content_side_v"/>
+        android:background="@color/topic_content_side_v" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -116,12 +132,12 @@
             android:gravity="center"
             android:text="@string/topic_like_tv"
             android:textColor="@color/topic_content_button_v"
-            android:textSize="@dimen/topic_content_button_v"/>
+            android:textSize="@dimen/topic_content_button_v" />
 
         <View
             android:layout_width="0.5dp"
             android:layout_height="12dp"
-            android:background="@color/topic_content_side_v"/>
+            android:background="@color/topic_content_side_v" />
 
         <TextView
             android:id="@+id/topic_chat_tv"
@@ -133,12 +149,12 @@
             android:gravity="center"
             android:text="@string/topic_chat_tv"
             android:textColor="@color/topic_content_button_v"
-            android:textSize="@dimen/topic_content_button_v"/>
+            android:textSize="@dimen/topic_content_button_v" />
 
         <View
             android:layout_width="0.5dp"
             android:layout_height="12dp"
-            android:background="#ffE5E5E5"/>
+            android:background="#ffE5E5E5" />
 
         <TextView
             android:id="@+id/topic_share_tv"
@@ -150,7 +166,7 @@
             android:gravity="center"
             android:text="@string/topic_share_tv"
             android:textColor="@color/topic_content_button_v"
-            android:textSize="@dimen/topic_content_button_v"/>
+            android:textSize="@dimen/topic_content_button_v" />
 
     </LinearLayout>
 
