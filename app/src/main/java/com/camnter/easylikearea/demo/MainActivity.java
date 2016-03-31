@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         this.classes = new ArrayList<>();
         this.classes.add(TopicActivity.class);
         this.classes.add(QZoneActivity.class);
+        this.classes.add(StyleActivity.class);
         this.classes.add(DebugActivity.class);
 
         this.mainAdapter = new MainAdapter();

@@ -10,13 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import com.camnter.easylikearea.EasyLikeArea;
+import com.camnter.easylikearea.demo.utils.GlideUtils;
 import com.camnter.easylikearea.widget.EasyLikeImageView;
 
 public class TopicActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private int[] avatars = { R.mipmap.ic_harry_chen, R.mipmap.ic_randy_lu, R.mipmap.ic_xingrz,
-            R.mipmap.ic_undownding, R.mipmap.ic_fython, R.mipmap.ic_kaede_akatsuki,
-            R.mipmap.ic_qixingchen, R.mipmap.ic_peter_cai, R.mipmap.ic_drakeet, };
     private DisplayMetrics mMetrics;
 
     public EasyLikeArea topicEla;
@@ -66,10 +64,10 @@ public class TopicActivity extends AppCompatActivity implements View.OnClickList
 
 
     private void initLikeArea() {
-        this.setOmitView(avatars.length);
-        for (int idRes : avatars) {
+        this.setOmitView(Constant.AVATARS.length);
+        for (int idRes : Constant.AVATARS) {
             EasyLikeImageView iv = this.createEasyLikeImageView();
-            iv.setImageResource(idRes);
+            GlideUtils.displayNative(iv, idRes);
             this.topicEla.addView(iv);
         }
     }
@@ -100,14 +98,14 @@ public class TopicActivity extends AppCompatActivity implements View.OnClickList
                     this.topicEla.addView(this.addIv);
                     this.added = true;
                     this.likeTv.setTextColor(likeAddedColor);
-                    this.omitTv.setText(
-                            this.getString(this.getOmitVieStringFormatId(), avatars.length + 1));
+                    this.omitTv.setText(this.getString(this.getOmitVieStringFormatId(),
+                            Constant.AVATARS.length + 1));
                 } else {
                     this.topicEla.removeView(this.addIv);
                     this.added = false;
                     this.likeTv.setTextColor(likeColor);
-                    this.omitTv.setText(
-                            this.getString(this.getOmitVieStringFormatId(), avatars.length));
+                    this.omitTv.setText(this.getString(this.getOmitVieStringFormatId(),
+                            Constant.AVATARS.length));
                 }
                 break;
             case R.id.topic_share_tv:

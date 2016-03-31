@@ -16,9 +16,7 @@
         android:paddingBottom="10dp"
         android:paddingLeft="12.5dp"
         android:paddingRight="12.5dp"
-        android:paddingTop="10dp">
-
-    </com.camnter.easylikearea.EasyLikeArea>
+        android:paddingTop="10dp"/>
 
     <Button
         android:id="@+id/dk_bt"

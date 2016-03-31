@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -84,6 +85,9 @@
         android:background="@color/white"
         android:paddingBottom="10dp"
         android:paddingLeft="12.5dp"
+        app:easyLikeAreaOmitCenter="true"
+        app:easyLikeAreaLikeSpacing="5dp"
+        app:easyLikeAreaOmitSpacing="8dp"
         android:paddingRight="12.5dp"
         android:paddingTop="10dp"/>
 
