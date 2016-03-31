@@ -98,7 +98,7 @@ private EasyLikeImageView createEasyLikeImageView() {
 
 <img src="http://ww2.sinaimg.cn/large/006lPEc9jw1f2gdeeubxjg30fw0sg7i3.gif" width="320x">   
 
-| Resolution |     Qzone    |      Style     |
+|    Scene   |     Qzone    |      Style     |
 | :--------: | :-----------:| :------------: |
 | | <img src="http://ww2.sinaimg.cn/large/006lPEc9jw1f2geg6ynxzj30g00sg0ua.jpg" width="320x">             |  <img src="http://ww1.sinaimg.cn/large/006lPEc9jw1f2geo82mrtj30fy0sk40j.jpg" width="320x">             |  
 
