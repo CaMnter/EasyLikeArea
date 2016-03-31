@@ -8,6 +8,12 @@ EasyLikeArea
 ![SDK](https://img.shields.io/badge/SDK-10%2B-orange.svg) 
 [ ![Download](https://api.bintray.com/packages/camnter/maven/EasyLikeArea/images/download.svg) ](https://bintray.com/camnter/maven/EasyLikeArea/_latestVersion)    
 
+##Introduction
+
+EasyViewProxy is cache manager of EasyLikeArea . The number of the View the default cache is 17.
+
+Suggestion: Use Glide rendering images, then add into EaseLikeArea .
+
 
 ## Gradle
 
@@ -59,16 +65,41 @@ private void initLikeArea() {
 }
 ```
 
+And you can use the **EasyLikeImageView**
+```java
+private EasyLikeImageView createEasyLikeImageView() {
+    EasyLikeImageView iv = new EasyLikeImageView(this);
+    iv.setLayoutParams(new ViewGroup.LayoutParams(this.dp2px(36), this.dp2px(36)));
+    return iv;
+}
+```
+
+**EasyLikeImageView Attributes**
+```xml
+<declare-styleable name="EasyLikeImageView">
+    <attr name="easyLikeImageType">
+        <enum name="round" value="2601" />
+        <enum name="circle" value="2602" />
+    </attr>
+    <attr name="easyLikeImageBorderRadius" format="dimension" />
+</declare-styleable>
+```
+
+
 ##ScreenShot
 
 <img src="http://ww2.sinaimg.cn/large/006lPEc9jw1f2gdeeubxjg30fw0sg7i3.gif" width="320x">   
+
+| Resolution |     Qzone    |      Style     |
+| :--------: | :-----------:| :------------: |
+| | <img src="http://ww2.sinaimg.cn/large/006lPEc9jw1f2geg6ynxzj30g00sg0ua.jpg" width="320x">             |  <img src="http://ww4.sinaimg.cn/large/006lPEc9jw1f2gegjrzyuj30g20skjtg.jpg" width="320x">             |  
 
   
 ## Compare resolution 
 
 | Resolution |    480x800   |    720x1280   |
 | :--------: | :-----------:| :-----------: |
-| ScreenShot | <img src="http://ww2.sinaimg.cn/large/006lPEc9jw1f2gd4fx6ypj30qk186adm.jpg" width="320x">             |  <img src="http://ww3.sinaimg.cn/large/006lPEc9jw1f2gd4u3eipj30qq1baq69.jpg" width="320x">             |
+| | <img src="http://ww2.sinaimg.cn/large/006lPEc9jw1f2gd4fx6ypj30qk186adm.jpg" width="320x">             |  <img src="http://ww3.sinaimg.cn/large/006lPEc9jw1f2gd4u3eipj30qq1baq69.jpg" width="320x">             |
 
 
 ## License
