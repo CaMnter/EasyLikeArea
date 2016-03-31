@@ -35,7 +35,7 @@ dependencies {
 
 ## Easy to use
 
-Detail can see the demo
+More details, we can see the demo.
 
 ```xml
 <com.camnter.easylikearea.EasyLikeArea
