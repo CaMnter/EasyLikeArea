@@ -29,6 +29,6 @@
         android:gravity="center"
         android:text="@string/view_omit_style_qzone_content"
         android:textColor="@color/qzone_omit_tv"
-        android:textSize="@dimen/qzone_omit_tv" />
+        android:textSize="@dimen/qzone_omit_tv"/>
 
 </LinearLayout>

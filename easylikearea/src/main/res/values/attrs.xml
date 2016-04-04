@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
 
  Copyright (C) 2016 CaMnter yuanyu.camnter@gmail.com
 
@@ -19,15 +18,21 @@
 <resources>
     <declare-styleable name="EasyLikeImageView">
         <attr name="easyLikeImageType">
-            <enum name="round" value="2601" />
-            <enum name="circle" value="2602" />
+            <enum name="round"
+                value="2601"/>
+            <enum name="circle"
+                value="2602"/>
         </attr>
-        <attr name="easyLikeImageBorderRadius" format="dimension" />
+        <attr name="easyLikeImageBorderRadius"
+            format="dimension"/>
     </declare-styleable>
 
     <declare-styleable name="EasyLikeArea">
-        <attr name="easyLikeAreaLikeSpacing" format="dimension" />
-        <attr name="easyLikeAreaOmitSpacing" format="dimension" />
-        <attr name="easyLikeAreaOmitCenter" format="boolean" />
+        <attr name="easyLikeAreaLikeSpacing"
+            format="dimension"/>
+        <attr name="easyLikeAreaOmitSpacing"
+            format="dimension"/>
+        <attr name="easyLikeAreaOmitCenter"
+            format="boolean"/>
     </declare-styleable>
 </resources>

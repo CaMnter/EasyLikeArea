@@ -26,20 +26,20 @@
         style="@style/StyleEasyLikeArea"
         app:easyLikeAreaLikeSpacing="5dp"
         app:easyLikeAreaOmitCenter="true"
-        app:easyLikeAreaOmitSpacing="8dp" />
+        app:easyLikeAreaOmitSpacing="8dp"/>
 
     <com.camnter.easylikearea.EasyLikeArea
         android:id="@+id/round_ela"
         style="@style/StyleEasyLikeArea"
         app:easyLikeAreaLikeSpacing="5dp"
         app:easyLikeAreaOmitCenter="true"
-        app:easyLikeAreaOmitSpacing="8dp" />
+        app:easyLikeAreaOmitSpacing="8dp"/>
 
     <com.camnter.easylikearea.EasyLikeArea
         android:id="@+id/normal_ela"
         style="@style/StyleEasyLikeArea"
         app:easyLikeAreaLikeSpacing="5dp"
         app:easyLikeAreaOmitCenter="true"
-        app:easyLikeAreaOmitSpacing="8dp" />
+        app:easyLikeAreaOmitSpacing="8dp"/>
 
 </LinearLayout>

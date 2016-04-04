@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.camnter.easylikearea.EasyLikeArea;
 import com.camnter.easylikearea.demo.utils.GlideUtils;
 import com.camnter.easylikearea.widget.EasyLikeImageView;
@@ -28,8 +27,8 @@ public class StyleActivity extends AppCompatActivity {
 
     private DisplayMetrics mMetrics;
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+
+    @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.activity_style);
         this.initViews();
@@ -99,5 +98,4 @@ public class StyleActivity extends AppCompatActivity {
     private int dp2px(int dp) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, this.mMetrics);
     }
-
 }

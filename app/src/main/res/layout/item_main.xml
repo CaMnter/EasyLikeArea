@@ -27,6 +27,6 @@
         android:padding="15dp"
         android:textColor="#ff58BE13"
         android:textSize="@dimen/main_item_tv"
-        android:textStyle="bold" />
+        android:textStyle="bold"/>
 
 </LinearLayout>

@@ -32,6 +32,7 @@ public class QZoneActivity extends TopicActivity {
         this.topicEla.setOmitView(omitView);
     }
 
+
     @Override public int getOmitVieStringFormatId() {
         return R.string.view_omit_style_qzone_content;
     }

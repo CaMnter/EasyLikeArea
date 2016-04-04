@@ -16,7 +16,6 @@
 package com.camnter.easylikearea.demo.adapter;
 
 import android.widget.TextView;
-
 import com.camnter.easylikearea.demo.R;
 import com.camnter.easyrecyclerview.adapter.EasyRecyclerViewAdapter;
 import com.camnter.easyrecyclerview.holder.EasyRecyclerViewHolder;
@@ -28,14 +27,12 @@ import com.camnter.easyrecyclerview.holder.EasyRecyclerViewHolder;
  */
 public class MainAdapter extends EasyRecyclerViewAdapter {
 
-    @Override
-    public int[] getItemLayouts() {
-        return new int[]{R.layout.item_main};
+    @Override public int[] getItemLayouts() {
+        return new int[] { R.layout.item_main };
     }
 
 
-    @Override
-    public void onBindRecycleViewHolder(EasyRecyclerViewHolder viewHolder, int position) {
+    @Override public void onBindRecycleViewHolder(EasyRecyclerViewHolder viewHolder, int position) {
         Class c = (Class) this.getList().get(position);
         if (c == null) return;
         TextView textView = viewHolder.findViewById(R.id.main_item_tv);
@@ -43,9 +40,7 @@ public class MainAdapter extends EasyRecyclerViewAdapter {
     }
 
 
-    @Override
-    public int getRecycleViewItemType(int position) {
+    @Override public int getRecycleViewItemType(int position) {
         return 0;
     }
-
 }

@@ -24,7 +24,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@mipmap/img_praise_more" />
+        android:src="@mipmap/img_praise_more"/>
 
     <TextView
         android:id="@+id/topic_omit_tv"
@@ -34,6 +34,6 @@
         android:layout_marginStart="8dp"
         android:text="@string/view_omit_style_topic_content"
         android:textColor="@color/topic_omit_tv"
-        android:textSize="@dimen/topic_omit_tv" />
+        android:textSize="@dimen/topic_omit_tv"/>
 
 </LinearLayout>

@@ -24,7 +24,6 @@ import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
-
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -110,8 +109,7 @@ public class EasyLikeArea extends ViewGroup {
     }
 
 
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+    @Override protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
         int viewWidth = MeasureSpec.getSize(widthMeasureSpec);
@@ -197,13 +195,12 @@ public class EasyLikeArea extends ViewGroup {
      * {@inheritDoc}
      *
      * @param changed changed
-     * @param l       l
-     * @param t       t
-     * @param r       r
-     * @param b       b
+     * @param l l
+     * @param t t
+     * @param r r
+     * @param b b
      */
-    @Override
-    protected void onLayout(boolean changed, int l, int t, int r, int b) {
+    @Override protected void onLayout(boolean changed, int l, int t, int r, int b) {
         this.likeViews.clear();
 
         int paddingTop = this.getPaddingTop();
@@ -257,20 +254,17 @@ public class EasyLikeArea extends ViewGroup {
     }
 
 
-    @Override
-    public LayoutParams generateLayoutParams(AttributeSet attrs) {
+    @Override public LayoutParams generateLayoutParams(AttributeSet attrs) {
         return new MarginLayoutParams(this.getContext(), attrs);
     }
 
 
-    @Override
-    protected LayoutParams generateLayoutParams(LayoutParams p) {
+    @Override protected LayoutParams generateLayoutParams(LayoutParams p) {
         return new MarginLayoutParams(p);
     }
 
 
-    @Override
-    protected LayoutParams generateDefaultLayoutParams() {
+    @Override protected LayoutParams generateDefaultLayoutParams() {
         return new MarginLayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
     }
 
@@ -309,8 +303,7 @@ public class EasyLikeArea extends ViewGroup {
     }
 
 
-    @Override
-    public final void addView(View child) {
+    @Override public final void addView(View child) {
         if (this.omitView == null) {
             throw new RuntimeException("You must addView(...) after setOmitView(View v)");
         }
@@ -322,8 +315,7 @@ public class EasyLikeArea extends ViewGroup {
     }
 
 
-    @Override
-    public void addView(View child, int index) {
+    @Override public void addView(View child, int index) {
         if (!this.addOmitView && this.omitView == null) {
             throw new RuntimeException("You must addView(...) after setOmitView(View v)");
         }
@@ -335,8 +327,7 @@ public class EasyLikeArea extends ViewGroup {
     }
 
 
-    @Override
-    public void removeView(View view) {
+    @Override public void removeView(View view) {
         try {
             this.easyProxy.removeViewProxy(view);
         } catch (Exception e) {
@@ -345,8 +336,7 @@ public class EasyLikeArea extends ViewGroup {
     }
 
 
-    @Override
-    public void removeViewAt(int index) {
+    @Override public void removeViewAt(int index) {
         try {
             this.easyProxy.removeViewAtProxy(index);
         } catch (Exception e) {
@@ -506,8 +496,7 @@ public class EasyLikeArea extends ViewGroup {
         }
 
 
-        @SuppressWarnings("unchecked")
-        public <V extends View> V getViewCache(int position) {
+        @SuppressWarnings("unchecked") public <V extends View> V getViewCache(int position) {
             if (this.mCacheViews.size() - 1 > position && this.mCacheViews.get(position) != null) {
                 return (V) this.mCacheViews.get(position);
             }
