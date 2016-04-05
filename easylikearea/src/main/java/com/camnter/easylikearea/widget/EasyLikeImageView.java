@@ -49,7 +49,11 @@ public class EasyLikeImageView extends ImageView {
     public static final int ROUND = 2601;
     public static final int CIRCLE = 2602;
 
-    @IntDef({ ROUND, CIRCLE }) @Retention(RetentionPolicy.SOURCE) public @interface ImageType {}
+    // @formatter:off
+    @IntDef({ ROUND, CIRCLE })
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface ImageType {}
+    // @formatter:on
 
     @ImageType private int imageType;
 
