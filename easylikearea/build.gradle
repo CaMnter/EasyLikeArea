@@ -5,7 +5,7 @@ android {
     buildToolsVersion "24.0.0 rc2"
 
     defaultConfig {
-        minSdkVersion 10
+        minSdkVersion 9
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -31,7 +31,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 // #CONFIG# // project version
-version = "1.3"
+version = "1.4"
 // #CONFIG# // project homepage
 def siteUrl = 'https://github.com/camnter/EasyLikeArea'
 // #CONFIG# // project git
