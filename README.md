@@ -94,13 +94,13 @@ private EasyLikeImageView createEasyLikeImageView() {
 ```
 
 
-##ScreenShot
+## Screenshots
 
 <img src="http://ww2.sinaimg.cn/large/006lPEc9jw1f2gdeeubxjg30fw0sg7i3.gif" width="320x">   
 
 |    Scene   |     Qzone    |      Style     |
 | :--------: | :-----------:| :------------: |
-| | <img src="http://ww2.sinaimg.cn/large/006lPEc9jw1f2geg6ynxzj30g00sg0ua.jpg" width="320x">             |  <img src="http://ww1.sinaimg.cn/large/006lPEc9jw1f2geo82mrtj30fy0sk40j.jpg" width="320x">             |  
+| | <img src="http://ww2.sinaimg.cn/large/006lPEc9gw1f30vuhhd0zj31ay298aj8.jpg" width="420x">             |  <img src="http://ww3.sinaimg.cn/large/006lPEc9gw1f30vus8l05j31ay2987f1.jpg" width="420x">             |  
 
   
 ## Compare resolution 
