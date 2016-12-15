@@ -132,17 +132,17 @@ public class EasyLikeArea extends ViewGroup {
     @Override protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
-        int viewWidth = MeasureSpec.getSize(widthMeasureSpec);
-        int viewHeight = MeasureSpec.getSize(heightMeasureSpec);
-        int widthMode = MeasureSpec.getMode(widthMeasureSpec);
-        int heightMode = MeasureSpec.getMode(heightMeasureSpec);
+        final int viewWidth = MeasureSpec.getSize(widthMeasureSpec);
+        final int viewHeight = MeasureSpec.getSize(heightMeasureSpec);
+        final int widthMode = MeasureSpec.getMode(widthMeasureSpec);
+        final int heightMode = MeasureSpec.getMode(heightMeasureSpec);
 
         this.maxViewWidth = Math.max(this.maxViewWidth, viewWidth);
 
-        int paddingTop = this.getPaddingTop();
-        int paddingBottom = this.getPaddingBottom();
-        int paddingLeft = this.getPaddingLeft();
-        int paddingRight = this.getPaddingRight();
+        final int paddingTop = this.getPaddingTop();
+        final int paddingBottom = this.getPaddingBottom();
+        final int paddingLeft = this.getPaddingLeft();
+        final int paddingRight = this.getPaddingRight();
 
         int likesWidth = 0;
 
@@ -156,7 +156,7 @@ public class EasyLikeArea extends ViewGroup {
             this.omitViewWidth += this.omitSpacing;
         }
 
-        int childCount = this.getChildCount();
+        final int childCount = this.getChildCount();
         if (this.isHasLikes()) {
             for (int i = 0; i < childCount; i++) {
                 if (i == childCount - 1) break;
