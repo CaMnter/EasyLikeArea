@@ -6,33 +6,49 @@ EasyLikeArea
 ![Language](https://img.shields.io/badge/language-Java-EE0000.svg) [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/CaMnter/EasyLikeArea/blob/master/LICENSE) 
 ![Version](https://img.shields.io/badge/version-1.4-8470FF.svg)
 ![SDK](https://img.shields.io/badge/SDK-9%2B-orange.svg)
-[ ![Download](https://api.bintray.com/packages/camnter/maven/EasyLikeArea/images/download.svg) ](https://bintray.com/camnter/maven/EasyLikeArea/_latestVersion)    
-
+ [ ![Download](https://api.bintray.com/packages/camnter/maven/EasyLikeArea/images/download.svg) ](https://bintray.com/camnter/maven/EasyLikeArea/_latestVersion)
+    
+<br>    
+   
 ##Introduction
 
 EasyViewProxy is cache manager of EasyLikeArea . The number of the View the default cache is 17.
 
 Suggestion: Use Glide rendering images, then add into EaseLikeArea .
-
-
+    
+<br>    
+   
 ## Gradle
 
 ```groovy
 dependencies {
-	compile 'com.camnter.easylikearea:easylikearea:1.4'
+	compile 'com.camnter.easylikearea:easylikearea:1.5'
 }
 ```
-
+    
+<br>    
+   
 ## Attributes
 
 ```xml
-<declare-styleable name="EasyCountDownTextureView">
-    <attr name="easyLikeAreaLikeSpacing" format="dimension" />
-    <attr name="easyLikeAreaOmitSpacing" format="dimension" />
-    <attr name="easyLikeAreaOmitCenter" format="boolean" />
+<declare-styleable name="EasyLikeArea">
+    <attr name="easyLayoutDirection">
+        <enum name="left"
+            value="2601"/>
+        <enum name="right"
+            value="2602"/>
+    </attr>
+    <attr name="easyLikeAreaLikeSpacing"
+        format="dimension"/>
+    <attr name="easyLikeAreaOmitSpacing"
+        format="dimension"/>
+    <attr name="easyLikeAreaOmitCenter"
+        format="boolean"/>
 </declare-styleable>
 ```
-
+    
+<br>    
+   
 ## Easy to use
 
 More details, we can see the demo.
@@ -50,9 +66,10 @@ More details, we can see the demo.
     app:easyLikeAreaLikeSpacing="5dp"
     app:easyLikeAreaOmitSpacing="8dp"
     android:paddingRight="12.5dp"
-    android:paddingTop="10dp"/>
+    android:paddingTop="10dp"
+    app:easyLayoutDirection="right"/>
 ```
-
+   
 **Attention:** You must addView(...)  after EasyLikeArea.setOmitView(View view) .
 ```java
 private void initLikeArea() {
@@ -72,7 +89,7 @@ public void setOmitView(int count) {
     this.topicEla.setOmitView(omitView);
 }
 ```
-
+  
 And you can use the **EasyLikeImageView**
 ```java
 private EasyLikeImageView createEasyLikeImageView() {
@@ -81,7 +98,7 @@ private EasyLikeImageView createEasyLikeImageView() {
     return iv;
 }
 ```
-
+  
 **EasyLikeImageView Attributes**
 ```xml
 <declare-styleable name="EasyLikeImageView">
@@ -92,8 +109,9 @@ private EasyLikeImageView createEasyLikeImageView() {
     <attr name="easyLikeImageBorderRadius" format="dimension" />
 </declare-styleable>
 ```
-
-
+    
+<br>    
+   
 ## Screenshots
 
 <img src="http://ww2.sinaimg.cn/large/006lPEc9jw1f2gdeeubxjg30fw0sg7i3.gif" width="320x">   

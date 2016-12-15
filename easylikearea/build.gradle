@@ -29,7 +29,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 // #CONFIG# // project version
-version = "1.4"
+version = "1.5"
 // #CONFIG# // project homepage
 def siteUrl = 'https://github.com/camnter/EasyLikeArea'
 // #CONFIG# // project git
