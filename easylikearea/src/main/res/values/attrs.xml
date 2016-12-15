@@ -28,6 +28,12 @@
     </declare-styleable>
 
     <declare-styleable name="EasyLikeArea">
+        <attr name="easyLayoutDirection">
+            <enum name="left"
+                value="2601"/>
+            <enum name="right"
+                value="2602"/>
+        </attr>
         <attr name="easyLikeAreaLikeSpacing"
             format="dimension"/>
         <attr name="easyLikeAreaOmitSpacing"
