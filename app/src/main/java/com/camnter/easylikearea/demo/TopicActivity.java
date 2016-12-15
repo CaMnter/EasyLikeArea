@@ -46,10 +46,15 @@ public class TopicActivity extends AppCompatActivity implements View.OnClickList
 
     @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.setContentView(R.layout.activity_topic);
+        this.setContentView(this.getLayoutId());
         this.initViews();
         this.initListeners();
         this.initLikeArea();
+    }
+
+
+    protected int getLayoutId() {
+        return R.layout.activity_topic;
     }
 
 
@@ -88,7 +93,7 @@ public class TopicActivity extends AppCompatActivity implements View.OnClickList
     }
 
 
-    public void setOmitView(int count) {
+    protected void setOmitView(int count) {
         View omitView = LayoutInflater.from(this).inflate(R.layout.view_omit_style_topic, null);
         this.omitTv = (TextView) omitView.findViewById(R.id.topic_omit_tv);
         this.omitTv.setText(this.getString(this.getOmitVieStringFormatId(), count));
@@ -96,7 +101,7 @@ public class TopicActivity extends AppCompatActivity implements View.OnClickList
     }
 
 
-    public int getOmitVieStringFormatId() {
+    protected int getOmitVieStringFormatId() {
         return R.string.view_omit_style_topic_content;
     }
 
@@ -114,13 +119,13 @@ public class TopicActivity extends AppCompatActivity implements View.OnClickList
                     this.added = true;
                     this.likeTv.setTextColor(likeAddedColor);
                     this.omitTv.setText(this.getString(this.getOmitVieStringFormatId(),
-                            Constant.AVATARS.length + 1));
+                        Constant.AVATARS.length + 1));
                 } else {
                     this.topicEla.removeView(this.addIv);
                     this.added = false;
                     this.likeTv.setTextColor(likeColor);
                     this.omitTv.setText(this.getString(this.getOmitVieStringFormatId(),
-                            Constant.AVATARS.length));
+                        Constant.AVATARS.length));
                 }
                 break;
             case R.id.topic_share_tv:

@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     private void initViews() {
         this.mainRv = (EasyRecyclerView) this.findViewById(R.id.main_rv);
         EasyDividerItemDecoration decoration = new EasyDividerItemDecoration(this,
-                EasyDividerItemDecoration.VERTICAL_LIST);
+            EasyDividerItemDecoration.VERTICAL_LIST);
         decoration.bottomDivider = true;
         this.mainRv.addItemDecoration(decoration);
     }
@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         this.classes.add(TopicActivity.class);
         this.classes.add(QZoneActivity.class);
         this.classes.add(StyleActivity.class);
+        this.classes.add(LayoutDirectionActivity.class);
 
         this.mainAdapter = new MainAdapter();
         this.mainAdapter.setList(this.classes);

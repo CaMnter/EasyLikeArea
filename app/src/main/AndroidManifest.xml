@@ -10,14 +10,15 @@
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".TopicActivity" />
-        <activity android:name=".QZoneActivity" />
-        <activity android:name=".StyleActivity" />
+        <activity android:name=".TopicActivity"/>
+        <activity android:name=".QZoneActivity"/>
+        <activity android:name=".StyleActivity"/>
+        <activity android:name=".LayoutDirectionActivity"/>
     </application>
 
 </manifest>
