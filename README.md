@@ -1,6 +1,8 @@
 EasyLikeArea
 ==
 
+<br>
+
 **Easy like area in the circle of friends or QQ qzone**
 
 ![Language](https://img.shields.io/badge/language-Java-EE0000.svg) [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/CaMnter/EasyLikeArea/blob/master/LICENSE) 
@@ -8,6 +10,7 @@ EasyLikeArea
  [ ![Download](https://api.bintray.com/packages/camnter/maven/EasyLikeArea/images/download.svg) ](https://bintray.com/camnter/maven/EasyLikeArea/_latestVersion)
     
 <br>    
+<br>   
    
 ##Introduction
 
@@ -16,6 +19,7 @@ EasyViewProxy is cache manager of EasyLikeArea . The number of the View the defa
 Suggestion: Use Glide rendering images, then add into EaseLikeArea .
     
 <br>    
+<br>
    
 ## Gradle
 
@@ -26,6 +30,7 @@ dependencies {
 ```
     
 <br>    
+<br>
    
 ## Attributes
 
@@ -47,10 +52,13 @@ dependencies {
 ```
     
 <br>    
+<br> 
    
 ## Easy to use
 
 More details, we can see the demo.
+
+<br>
 
 ```xml
 <com.camnter.easylikearea.EasyLikeArea
@@ -68,6 +76,8 @@ More details, we can see the demo.
     android:paddingTop="10dp"
     app:easyLayoutDirection="right"/>
 ```
+
+<br>   
    
 **Attention:** You must addView(...)  after EasyLikeArea.setOmitView(View view) .
 ```java
@@ -88,6 +98,8 @@ public void setOmitView(int count) {
     this.topicEla.setOmitView(omitView);
 }
 ```
+
+<br> 
   
 And you can use the **EasyLikeImageView**
 ```java
@@ -110,6 +122,7 @@ private EasyLikeImageView createEasyLikeImageView() {
 ```
     
 <br>    
+<br>
    
 ## Screenshots
 
@@ -119,6 +132,8 @@ private EasyLikeImageView createEasyLikeImageView() {
 | :--------: | :-----------:| :------------: |
 | | <img src="http://ww2.sinaimg.cn/large/006lPEc9gw1f30vuhhd0zj31ay298aj8.jpg" width="420x">             |  <img src="http://ww3.sinaimg.cn/large/006lPEc9gw1f30vus8l05j31ay2987f1.jpg" width="420x">             |  
 
+<br>    
+<br>
   
 ## Compare resolution 
 
@@ -126,6 +141,8 @@ private EasyLikeImageView createEasyLikeImageView() {
 | :--------: | :-----------:| :-----------: |
 | | <img src="http://ww2.sinaimg.cn/large/006lPEc9jw1f2gd4fx6ypj30qk186adm.jpg" width="320x">             |  <img src="http://ww3.sinaimg.cn/large/006lPEc9jw1f2gd4u3eipj30qq1baq69.jpg" width="320x">             |
 
+<br>    
+<br>
 
 ## License
 
