@@ -12,7 +12,7 @@ EasyLikeArea
 <br>    
 <br>   
    
-##Introduction
+## Introduction
 
 EasyViewProxy is cache manager of EasyLikeArea . The number of the View the default cache is 17.
 
