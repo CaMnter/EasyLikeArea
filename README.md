@@ -1,5 +1,5 @@
-EasyLikeArea
-==
+# EasyLikeArea
+
 
 <br>
 
@@ -12,7 +12,7 @@ EasyLikeArea
 <br>    
 <br>   
    
-##Introduction
+## Introduction
 
 EasyViewProxy is cache manager of EasyLikeArea . The number of the View the default cache is 17.
 
@@ -23,7 +23,7 @@ Suggestion: Use Glide rendering images, then add into EaseLikeArea .
    
 ## Gradle
 
-```groovy
+```gradle
 dependencies {
 	compile 'com.camnter.easylikearea:easylikearea:1.5'
 }
